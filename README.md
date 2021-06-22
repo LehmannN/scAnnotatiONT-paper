@@ -1,9 +1,10 @@
-# Improved annotation with scRNA-seq and Oxford Nanopore bulk long reads
+# Improved annotation with scRNA-seq and ONT bulk long reads
 
-Recovering significant 10xGenomics scRNA-seq signal through improved annotation with long reads.
+Recovering significant 10xGenomics single-cell RNA-seq signal through improved annotation with Oxford Nanopore (ONT) bulk long reads.
 Applied on chick embryo neuro-epithelial progenitors at 66h of development.
 
 GitHub repository started on 2021-04-02.
+
 
 ## Repository content and structure
 
@@ -47,7 +48,6 @@ Input data files include:
 
 *TBA*
 
-
 ### Scripts
 
 Current code files include:
@@ -56,4 +56,20 @@ Current code files include:
 
 ### Output
 
-Output files (all the files in this folder are created when running the analysis).
+Output files not stored in the `html` files (e.g. `csv` or `tsv` files).
+
+*TBA*
+
+
+## Run the code
+
+To run the notebook and create the corresponding `html` files, you have two options:
+
+* In **RStudio**, click the `knit` button (you may need to change the [knit directory](https://bookdown.org/yihui/rmarkdown-cookbook/working-directory.html))
+* In a linux **terminal**, run the script *_build.sh* with the command:
+
+```{bash}
+bash _build.sh
+```
+
+The output will be stored in the **docs** folder.

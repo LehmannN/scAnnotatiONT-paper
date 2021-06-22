@@ -1,5 +1,5 @@
 ---
-title: "Report title"
+title: "scAnnotatiONT paper"
 author: "Nathalie Lehmann"
 date: "`r Sys.Date()`"
 output: bookdown::gitbook
@@ -7,14 +7,63 @@ documentclass: book
 bibliography: []
 biblio-style: apalike
 link-citations: yes
-github-repo: "https://github.com/LehmannN/scRNA-reannotation.git"
+github-repo: "https://github.com/LehmannN/scAnnotatiONT"
 ---
 
-```{r knitr, include=FALSE}
+```{r setup-paths, echo=FALSE}
+path_main <- './'
+path_raw <- paste0(path_main, 'data/raw/')
+path_rds <- paste0(path_main, 'data/rds/')
+path_refs <- paste0(path_main, 'data/refs/')
+path_output <- paste0(path_main, 'output/')
+path_scripts_r <- paste0(path_main,'scripts/R/')
+```
+
+```{r setup-chunks, echo=FALSE, message=FALSE}
+library(knitr)
+opts_chunk$set(fig.align = "center",
+			   fig.retina = 2,
+			   fig.width = 10,
+			   cache = TRUE,
+			   cache.lazy = FALSE,
+			   warning = FALSE,
+			   message = FALSE)
+```
+
+```{r def-libraries, echo=FALSE, cache=FALSE}
+packagesList <- c("bookdown",
+				   "knitr",
+				   "rmarkdown",
+				   "Seurat",
+				   "scater",
+				   "clusterProfiler",
+				   "tidyseurat",
+				   "monocle3",
+				   "DT",
+				   "ggplot2",
+				   "Matrix",
+				   "dplyr",
+				   "RColorBrewer",
+				   "viridis",
+				   "wesanderson",
+				   "gskb",
+				   "ggExtra",
+				   "ggpubr")
+lapply(packagesList, require, character.only = TRUE)
+options(stringsAsFactors = FALSE)
+```
+
+```{r setup-knitr, include=FALSE}
 # Automatically creates a bib database for R packages
 knitr::write_bib(c(
-				 .packages(), 'bookdown', 'knitr', 'rmarkdown'),
+				 .packages(), packagesList),
 				 'env/packages.bib')
 # Adds an option to show / hide the code dynamically in the report
 knitr::read_chunk('scripts/R/rmd_code_folding.R')
 ```
+
+```{r def-ggplot-theme, echo=FALSE}
+#Set ggplot theme
+#theme_set(theme_classic())
+```
+
