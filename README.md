@@ -59,11 +59,25 @@ Here we explore the discrepancies between the references annotations (Ensembl an
 
 We study here the loss in scRNA-seq signal (e.g. genes) due to significant deficiencies in the reference annotation, specially in the 3' UTRs annotations.
 
-* `03-Approaches-to-improve-transcriptome-with-Long-Reads.Rmd` - We compare various tools dedicated to transcriptome reconstruction in bulk RNA-seq (StringTie2, scallop), a dedicated signal detection approach and broad 3' UTR extension and apply them to scRNA-seq data and ONT bulk long reads.
-* `04-Impact-reannotation-scRNA.Rmd` - We assess the impact of our various reannotations on common scRNA-seq analyses.
-* `05-Validation-of-novel-genes-with-scRNA.Rmd` - We evaluate the ability of our approach to identify novel genes and use scRNA-seq analyses as a filter to highlight genes of biological interest in chick embryo neuro-epithelial progenitors.
-* `06-A-tool-and-pipeline-to-improve-annotation-for-scRNA.Rmd` - Description and recommendations to use our pipeline on other scRNA-seq data.
-* `07-Session-info.Rmd` - Session info output.
+* `03-Approaches-to-improve-transcriptome-with-Long-Reads.Rmd`
+
+We compare various tools dedicated to transcriptome reconstruction in bulk RNA-seq (StringTie2, scallop), a dedicated signal detection approach and broad 3' UTR extension and apply them to scRNA-seq data and ONT bulk long reads.
+
+* `04-Impact-reannotation-scRNA.Rmd`
+
+We assess the impact of our various reannotations on common scRNA-seq analyses.
+
+* `05-Validation-of-novel-genes-with-scRNA.Rmd`
+
+We evaluate the ability of our approach to identify novel genes and use scRNA-seq analyses as a filter to highlight genes of biological interest in chick embryo neuro-epithelial progenitors.
+
+* `06-A-tool-and-pipeline-to-improve-annotation-for-scRNA.Rmd`
+
+Description and recommendations to use our pipeline on other scRNA-seq data.
+
+* `07-Session-info.Rmd`
+
+Session info output.
 
 ### External scripts
 
