@@ -34,9 +34,9 @@ Files found at the root of the repository are of general purpose:
 Current input data files include:
 
 ```bash
-- notebook		# javascript for bookdown output
-- processed		# output data when generating the notebook
-- raw		# raw data (input)
+- notebook		# javascript for bookdown output (do not touch)
+- processed		# output generated when running the notebook
+- raw			# raw data (input)
   - references
     - annotations
 	  - ensembl
