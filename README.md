@@ -33,6 +33,7 @@ Files found at the root of the repository are of general purpose:
 
 Current input data files include:
 
+```
 * notebook				# javascript code to control bookdown output (do not touch unless you know what you're doing)
 * processed				# output data when generating the notebook
 * raw						# raw data (input)
@@ -44,6 +45,7 @@ Current input data files include:
   * rna-seq
     * single-cell
     * long-read
+```
 
 ### R Markdown files
 
@@ -61,11 +63,12 @@ Current notebook files include:
 
 Current code files include:
 
-* analysis
-* pipeline
-* preprocessing
-* utilities
-
+```bash
+- analysis
+- pipeline
+- preprocessing
+- utilities
+```
 
 
 ## Run the code
