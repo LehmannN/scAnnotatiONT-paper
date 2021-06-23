@@ -12,19 +12,20 @@ github-repo: "https://github.com/LehmannN/scAnnotatiONT"
 
 ```{r setup-paths, echo=FALSE}
 path_main <- './'
-path_raw <- paste0(path_main, 'data/raw/')
-path_rds <- paste0(path_main, 'data/rds/')
-path_refs <- paste0(path_main, 'data/refs/')
+path_data <- paste0(path_main, 'data/')
 path_output <- paste0(path_main, 'output/')
-path_scripts_r <- paste0(path_main,'scripts/R/')
+path_scripts <- paste0(path_main,'scripts/')
 ```
 
 ```{r setup-chunks, echo=FALSE, message=FALSE}
 library(knitr)
+
+# Change cache to TRUE if you need to re-run the analysis with small changes
+# Careful: Bookdown doesn’t support proper cache invalidation based on external file changes
 opts_chunk$set(fig.align = "center",
 			   fig.retina = 2,
 			   fig.width = 10,
-			   cache = TRUE,
+			   cache = FALSE,
 			   cache.lazy = FALSE,
 			   warning = FALSE,
 			   message = FALSE)
@@ -59,10 +60,10 @@ knitr::write_bib(c(
 				 .packages(), packagesList),
 				 'env/packages.bib')
 # Adds an option to show / hide the code dynamically in the report
-knitr::read_chunk('scripts/R/rmd_code_folding.R')
+#knitr::read_chunk('src/R/rmd_code_folding.R')
 ```
 
-```{r def-ggplot-theme, echo=FALSE}
+```{r ggplot-theme, echo=FALSE}
 #Set ggplot theme
 #theme_set(theme_classic())
 ```
