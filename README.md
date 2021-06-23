@@ -33,18 +33,18 @@ Files found at the root of the repository are of general purpose:
 
 Current input data files include:
 
-```
-* notebook				# javascript code to control bookdown output (do not touch unless you know what you're doing)
-* processed				# output data when generating the notebook
-* raw						# raw data (input)
-  * references
-    * annotations
-	  * ensembl
-	  * ncbi
-	  * ucsc
-  * rna-seq
-    * single-cell
-    * long-read
+```bash
+- notebook		# javascript for bookdown output
+- processed		# output data when generating the notebook
+- raw		# raw data (input)
+  - references
+    - annotations
+	  - ensembl
+	  - ncbi
+	  - ucsc
+  - rna-seq
+    - single-cell
+    - long-read
 ```
 
 ### R Markdown files
