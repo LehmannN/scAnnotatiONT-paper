@@ -14,4 +14,4 @@ fi
 
 git add * || true
 git commit -m "${commitMessage}" || true
-#git push origin master
+git push origin master

@@ -10,5 +10,5 @@ rm -ri docs/
 set -ev
 Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')" >& _build.log
 
-# Uncomment next line if you wish to generate a PDF version of the report
+# Generate a PDF version of the report (not by default)
 #Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book')"
