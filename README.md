@@ -12,11 +12,11 @@ GitHub repository started on 2021-04-02.
 
 Files found at the root of the repository are of general purpose:
 
-* `_bookdown.yml` - Configuration `YAML` file for the notebook (which is writen with [bookdown](https://bookdown.org/))
-* `_build.log` - Log file (stdout and stderr) generated when running the analysis
+* `_bookdown.yml` - Configuration `YAML` file for the notebook
+* `_build.log` - Log file (`stdout` and `stderr`) generated when running the analysis
 * `_build.sh` - Bash script to run the analysis
 * `_deploy.sh` - Bash script to deploy the analysis on GitHub
-* `index.Rmd` - R Markdown file used for the setup of the analysis (load libraries, define variables and paths...)
+* `index.Rmd` - R Markdown file used for the setup of the analysis (load libraries, define variables, paths...)
 * `README.md` - This file
 * `_workflowr.yml` - [Workflowr](https://jdblischak.github.io/workflowr/index.html) configuration file
 
@@ -34,9 +34,13 @@ Files found at the root of the repository are of general purpose:
 Current input data files include:
 
 data
+
 ├── notebook				# javascript code to control bookdown output (do not touch unless you know what you're doing)
+
 │   └── js
+
 ├── processed				# output data when generating the notebook
+
 └── raw						# raw data (input)
     ├── references
     │   ├── annotations
