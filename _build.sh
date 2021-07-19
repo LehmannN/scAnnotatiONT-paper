@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 # Remove previously generated output
-rm -ri docs/
+#rm -ri docs/
+#rm -ri output/
+rm -i .rvars
 
 # Uncomment next line to activate the conda environment for this study (see README.md file to create the conda environment)
 #conda activate scAnnotatiONT

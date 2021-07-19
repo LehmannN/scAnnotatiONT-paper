@@ -1,4 +1,1 @@
-# Session info
-```{r session, echo=FALSE, eval=T}
-sessionInfo()
-```
+# Approaches to improve transcriptome with long reads

@@ -50,6 +50,9 @@ packagesList <- c("bookdown",
 				   "gskb",
 				   "ggExtra",
 				   "ggpubr")
+
+packagesList <- c("bookdown",
+				  "dplyr", "eulerr")
 lapply(packagesList, require, character.only = TRUE)
 options(stringsAsFactors = FALSE)
 ```

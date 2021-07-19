@@ -1,22 +1,275 @@
-# Comparison between references
+# Impact of discrepant reference annotations on scRNA-seq analyses
 
-## Define reference annotations
-```{bash, eval=FALSE, cache=TRUE}
-ref_ensembl_103='data/refs/annotations/ensembl/Gallus_gallus.GRCg6a.103.gtf'
-ref_ncbi='data/refs/annotations/ncbi/GRCg6a_ncbi2ucsc_NL.gtf'
-ref_ucsc_refGene='data/refs/annotations/ncbi/galGal6.refGene.gtf'
-ref_ucsc_ensGene='data/refs/annotations/ncbi/galGal6.ensGene.gtf'
-ref_ucsc_ncbiRefSeq='data/refs/annotations/ncbi/galGal6.ncbiRefSeq.gtf'
+## Discrepancies in reference annotations
+
+### Define paths
+
+```{bash, eval=TRUE}
+echo "export pathRef='data/raw/references/annotations/ucsc/'" >> .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/'" >> .rvars
 ```
 
-## Venn Diagrams
+```{bash, eval=TRUE}
+source .rvars
+mkdir -p $pathRef
+mkdir -p $pathOutput
+```
+
+### Get GTF files
+```{bash, eval=FALSE, message=FALSE, warning=FALSE}
+source .rvars
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ensGene.gtf.gz \
+	-P $pathRef	
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ncbiRefSeq.gtf.gz \
+	-P $pathRef
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.refGene.gtf.gz \
+	-P $pathRef
+gunzip ${pathRef}*.gtf.gz
+```
+
+```{bash, eval=TRUE}
+source .rvars
+echo "export ref1='${pathRef}galGal6.ensGene.gtf'" >> .rvars
+echo "export ref2='${pathRef}galGal6.ncbiRefSeq.gtf'" >> .rvars
+echo "export ref3='${pathRef}galGal6.refGene.gtf'" >> .rvars
+```
+
+### Basic stats on GTF files
+
+#### Fix GTF RefGene file
+
+When running `mikado`, we found out that some exons overlap.
+This causes `mikado` to throw an error such as "start must be less than end", and it stops running.
+We use `gffread -T` to fix this issue. 
+
+```{bash, eval=TRUE}
+source .rvars
+gffread -T $ref3 > ${ref3%.*}_fixed.gtf
+
+sed -i '/ref3/c\' .rvars
+echo "export ref3='${ref3%.*}_fixed.gtf'" >> .rvars
+source .rvars
+echo $ref3
+```
+
+#### Infer genes from GTF files
+This step will both infer "gene" feature in the annotation files and convert GTF format to GFF3.
+Without this step, we would end up with only CDS, transcript, exons features.
+ 
+```{bash, eval=F}
+# Make sure gffread version is >= v0.12.1 
+
+source .rvars
+echo ',genes,transcripts' > ${pathOutput}counts_table.csv
+for gtf in $ref{1..3}
+do
+	echo $gtf
+	filename=$(basename -- "$gtf")
+	
+	# Create GFF3 with all features / only genes / only transcripts
+	gffread -E --keep-genes $gtf -o- > ${pathRef}${filename%.*}.gff3
+	awk '$3~/gene/' ${pathRef}${filename%.*}.gff3 > ${pathRef}${filename%.*}_genes.gff3
+	awk '$3~/transcript/' ${pathRef}${filename%.*}.gff3 > ${pathRef}${filename%.*}_transcripts.gff3
+	
+	# Save count results (number of genes and transcripts in each annotation)	
+	echo $filename | tr '\n' ',' >> ${pathOutput}counts_table.csv
+	wc -l ${pathRef}${filename%.*}_genes.gff3 | cut -d' ' -f1 |  tr '\n' ',' >> ${pathOutput}counts_table.csv
+	wc -l ${pathRef}${filename%.*}_transcripts.gff3 | cut -d' ' -f1 >> ${pathOutput}counts_table.csv
+done
+```
+
+
+#### Run mikado stats
+
+```{bash, eval=TRUE}
+source .rvars
+sed -i '/pathOutput/c\' .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/mikado_stats/'" >> .rvars
+source .rvars
+echo $pathOutput
+mkdir -p $pathOutput
+```
+
+```{bash, eval=F}
+source .rvars
+for gtf in $ref{1..3}
+do
+	echo $gtf
+	filename=$(basename -- "$gtf")
+	mikado util stats $gtf ${pathOutput}${filename%.*}_stats.tsv
+done
+
+asm_collect.py ${pathOutput}*_stats.tsv > ${pathOutput}main_stats.tsv
+```
+
+### Comparison with GffCompare
+
+```{bash, eval=TRUE}
+source .rvars
+sed -i '/pathOutput/c\' .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/gffcompare/'" >> .rvars
+source .rvars
+echo $pathOutput
+mkdir -p $pathOutput
+```
+
+```{bash, eval=FALSE}
+source .rvars
+
+gffcompare -r $ref1 -o ${pathOutput}gffcmp_ensGene_ncbiRefSeq $ref2
+gffcompare -r $ref1 -o ${pathOutput}gffcmp_ensGene_refGene $ref3
+gffcompare -r $ref2 -o ${pathOutput}gffcmp_ncbiRefSeq_ensGene $ref1
+gffcompare -r $ref2 -o ${pathOutput}gffcmp_ncbiRefSeq_refGene $ref3
+gffcompare -r $ref3 -o ${pathOutput}gffcmp_refGene_ncbiRefSeq $ref2
+gffcompare -r $ref3 -o ${pathOutput}gffcmp_refGene_ensGene $ref1
+```
+
+#### Make GffCompare results machine readable
+
+```{bash, eval=FALSE}
+src/utilities/make_gffcmp_stats_readable.sh
+```
+
+
+
+### Venn Diagrams
 All Venn diagrams are produced via Intervene. This tool is based on `bedtools interset`.
 Euler diagrams are obtained with `eulerr`.
 
-```{bash, eval=FALSE, cache=TRUE}
-intervene venn -i ${ref_ensembl_103} ${ref_ncbi} ${ref_ucsc_refGene}
-	--output ./output/venn_diagrams/3refs
-	–save-overlaps True
-	–figtype png
-	–bedtools-options -f=0.8 -r
+#### Gene level
+```{bash, eval=TRUE}
+source .rvars
+sed -i '/pathOutput/c\' .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/venn_diagrams/genes/'" >> .vars
+source .rvars
+mkdir -p $pathOutput
+```
+
+```{bash, eval=TRUE}
+source .rvars
+echo "export genesGff1='${pathRef}galGal6.ensGene_genes.gff3'" >> .rvars
+echo "export genesGff2='${pathRef}galGal6.ncbiRefSeq_genes.gff3'" >> .rvars
+echo "export genesGff3='${pathRef}galGal6.refGene_fixed_genes.gff3'" >> .rvars
+```
+
+```{bash, eval=TRUE}
+source .rvars
+echo $genesGff1
+echo $genesGff2
+echo $genesGff3
+
+intervene venn -i $genesGff1 $genesGff2 $genesGff3 \
+	--figtype png \
+	--save-overlaps \
+	--bedtools-options f=0.5,r,s \
+	--output ${pathOutput}
+
+wc -l ${pathOutput}sets/*.bed | \
+	awk -v OFS="\t" '$1=$1' > ${pathOutput}venn_counts.tsv
+```
+
+```{r venn-ref-gene, eval=TRUE}
+venn_intersect <- euler(c("refGene" = 248,
+	"ncbiRefSeq" = 8555,
+	"Ensembl" = 9004,
+	"ncbiRefSeq&Ensembl" = 8927,
+	"ncbiRefSeq&refGene" = 253,
+	"Ensembl&refGene" = 376,
+	"ncbiRefSeq&Ensembl&refGene" = 6049))
+
+plot(venn_intersect,
+	quantities = list(type = c("percent", "counts"),
+		col =  c("black", "black", "white"),
+		fontsize = 15),
+	labels = list(col = c("black", "black", "white"),
+		fontsize = 20),
+	edges = list(col = "white", lex = 2),
+	fills = c("limegreen", "darkgoldenrod1", "dodgerblue"),
+	legend = list(side = "right"))
+
+plot(venn_intersect,
+	quantities = list(type = c("percent", "counts"),
+		col =  c("black", "black", "black"),
+		fontsize = 15),
+	labels = list(col = c("black", "black", "black"),
+		fontsize = 20),
+	edges = list(col = "white", lex = 2),
+	legend = list(side = "right"))
+```
+
+
+#### Transcript level
+```{bash, eval=TRUE}
+source .rvars
+sed -i '/pathOutput/c\' .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/venn_diagrams/transcripts/'" >> .rvars
+source .rvars
+mkdir -p $pathOutput
+```
+
+```{bash, eval=TRUE}
+source .rvars
+echo "export trxGff1='${pathRef}galGal6.ensGene_transcripts.gff3'" >> .rvars
+echo "export trxGff2='${pathRef}galGal6.ncbiRefSeq_transcripts.gff3'" >> .rvars
+echo "export trxGff3='${pathRef}galGal6.refGene_fixed_transcripts.gff3'" >> .rvars
+```
+
+```{bash, eval=TRUE}
+source .rvars
+
+intervene venn --i $trxGff1 $trxGff2 $trxGff3 \
+	--figtype png \
+	--save-overlaps \
+	--bedtools-options f=0.5,r,s \
+	--output ${pathOutput}
+
+wc -l ${pathOutput}sets/*.bed | \
+	awk -v OFS="\t" '$1=$1' > ${pathOutput}venn_counts.tsv
+```
+
+```{r venn-load-transcript, eval=FALSE}
+path_output <- "output/01-Impact-ref-annotation-scRNA/venn_diagrams/transcripts/"
+venn_counts <- read.table(file = paste0(path_output, 'venn_counts.tsv'),
+							header = FALSE,
+							col.names = c('count', 'filePath'),
+							sep = '\t')
+strX <- strsplit(x = venn_counts[1,2], split = '/')[[1]]
+#venn_counts %>% mutate(fileName = strsplit(x = filePath, split = '/'))[[1]][length(strX)] 
+```
+
+```{r venn-ref-transcript, eval=TRUE}
+venn_intersect <- euler(c("refGene" = 68,
+	"ncbiRefSeq" = 15647,
+	"Ensembl" = 12567,
+	"ncbiRefSeq&Ensembl" = 16141,
+	"ncbiRefSeq&refGene" = 377,
+	"Ensembl&refGene" = 192,
+	"ncbiRefSeq&Ensembl&refGene" = 10388))
+
+plot(venn_intersect,
+	quantities = list(type = c("percent", "counts"),
+		col =  c("black", "black", "white"),
+		fontsize = 15),
+	labels = list(col = c("black", "black", "white"),
+		fontsize = 20),
+	edges = list(col = "white", lex = 2),
+	fills = c("limegreen", "darkgoldenrod1", "dodgerblue"),
+	legend = list(side = "right"))
+
+plot(venn_intersect,
+	quantities = list(type = c("percent", "counts"),
+		col =  c("black", "black", "black"),
+		fontsize = 15),
+	labels = list(col = c("black", "black", "black"),
+		fontsize = 20),
+	edges = list(col = "white", lex = 2),
+	legend = list(side = "right"))
+```
+
+
+## Impact of reference choice on scRNA-seq analyses
+
+```{r, eval=FALSE}
+data_seurat <- CreateSeuratObject(counts_wide)
+run nextflow quantif 
 ```
