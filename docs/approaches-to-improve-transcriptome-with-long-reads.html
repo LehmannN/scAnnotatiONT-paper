@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 3 Approaches to improve transcriptome with long reads | scAnnotatiONT paper</title>
-  <meta name="description" content=" 3 Approaches to improve transcriptome with long reads | scAnnotatiONT paper" />
+  <title> 3 Approaches to improve transcriptome with long reads | scAnnotatiONT paper companion</title>
+  <meta name="description" content=" 3 Approaches to improve transcriptome with long reads | scAnnotatiONT paper companion" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 3 Approaches to improve transcriptome with long reads | scAnnotatiONT paper" />
+  <meta property="og:title" content=" 3 Approaches to improve transcriptome with long reads | scAnnotatiONT paper companion" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/LehmannN/scAnnotatiONT" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 3 Approaches to improve transcriptome with long reads | scAnnotatiONT paper" />
+  <meta name="twitter:title" content=" 3 Approaches to improve transcriptome with long reads | scAnnotatiONT paper companion" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Nathalie Lehmann" />
 
 
-<meta name="date" content="2021-07-13" />
+<meta name="date" content="2021-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +34,7 @@
 <link rel="prev" href="incomplete-annotations-induce-signal-loss.html"/>
 <link rel="next" href="impact-of-re-annotation-on-scrna-seq-analyses.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -53,6 +53,24 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="libs/pdfmake-1.10.20/pdfmake.js"></script>
+<script src="libs/pdfmake-1.10.20/vfs_fonts.js"></script>
+<link href="libs/dt-ext-buttons-1.10.20/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-buttons-1.10.20/js/dataTables.buttons.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.20/js/buttons.flash.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.20/js/buttons.html5.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.20/js/buttons.colVis.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.20/js/buttons.print.min.js"></script>
+<link href="libs/dt-ext-scroller-1.10.20/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-scroller-1.10.20/js/dataTables.scroller.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -137,11 +155,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#discrepancies-in-reference-annotations"><i class="fa fa-check"></i><b>1.1</b> Discrepancies in reference annotations</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#define-paths"><i class="fa fa-check"></i><b>1.1.1</b> Define paths</a></li>
-<li class="chapter" data-level="1.1.2" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#get-gtf-files"><i class="fa fa-check"></i><b>1.1.2</b> Get GTF files</a></li>
-<li class="chapter" data-level="1.1.3" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#basic-stats-on-gtf-files"><i class="fa fa-check"></i><b>1.1.3</b> Basic stats on GTF files</a></li>
-<li class="chapter" data-level="1.1.4" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#comparison-with-gffcompare"><i class="fa fa-check"></i><b>1.1.4</b> Comparison with GffCompare</a></li>
-<li class="chapter" data-level="1.1.5" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#venn-diagrams"><i class="fa fa-check"></i><b>1.1.5</b> Venn Diagrams</a></li>
+<li class="chapter" data-level="1.1.1" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#define-paths-and-get-reference-annotations"><i class="fa fa-check"></i><b>1.1.1</b> Define paths and get reference annotations</a></li>
+<li class="chapter" data-level="1.1.2" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#basic-stats-on-gtf-files"><i class="fa fa-check"></i><b>1.1.2</b> Basic stats on GTF files</a></li>
+<li class="chapter" data-level="1.1.3" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#run-nextflow-pipeline"><i class="fa fa-check"></i><b>1.1.3</b> Run nextflow pipeline</a></li>
+<li class="chapter" data-level="1.1.4" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#mikado"><i class="fa fa-check"></i><b>1.1.4</b> Mikado</a></li>
+<li class="chapter" data-level="1.1.5" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#gene-lengths"><i class="fa fa-check"></i><b>1.1.5</b> Gene lengths</a></li>
+<li class="chapter" data-level="1.1.6" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#utr-lengths"><i class="fa fa-check"></i><b>1.1.6</b> 3’UTR lengths</a></li>
+<li class="chapter" data-level="1.1.7" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#venn-diagrams"><i class="fa fa-check"></i><b>1.1.7</b> Venn Diagrams</a></li>
+<li class="chapter" data-level="1.1.8" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#gffcompare"><i class="fa fa-check"></i><b>1.1.8</b> GffCompare</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#impact-of-reference-choice-on-scrna-seq-analyses"><i class="fa fa-check"></i><b>1.2</b> Impact of reference choice on scRNA-seq analyses</a></li>
 </ul></li>
@@ -160,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">scAnnotatiONT paper</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">scAnnotatiONT paper companion</a>
           </h1>
         </div>
 

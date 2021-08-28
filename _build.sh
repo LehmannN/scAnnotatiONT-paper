@@ -10,7 +10,7 @@ rm -i .rvars
 
 # Generate a HTML version of the report
 set -ev
-Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')" >& _build.log
+Rscript -e "bookdown::render_book('00-Index.Rmd', 'bookdown::gitbook')" >& _build.log
 
 # Generate a PDF version of the report (not by default)
 #Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book')"

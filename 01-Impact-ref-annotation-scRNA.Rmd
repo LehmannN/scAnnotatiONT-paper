@@ -1,0 +1,289 @@
+# Impact of discrepant reference annotations on scRNA-seq analyses
+
+In this section, we will have a look at the differences between the three references genome annotation: Ensembl, NCBI (RefSeq) and UCSC.
+
+## Discrepancies in reference annotations
+
+### Define paths and get reference annotations
+
+These are just sanity steps to define the inputs and outputs of the workflow.
+
+```{bash, eval=TRUE}
+echo "export pathRef='data/raw/references/annotations/ucsc/'" >> .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/'" >> .rvars
+```
+
+```{bash, eval=FALSE, message=FALSE, warning=FALSE}
+source .rvars
+mkdir -p $pathRef
+mkdir -p $pathOutput
+
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ensGene.gtf.gz \
+-P $pathRef
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ncbiRefSeq.gtf.gz \
+-P $pathRef
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.refGene.gtf.gz \
+-P $pathRef
+gunzip ${pathRef}*.gtf.gz
+```
+
+```{bash, eval=TRUE, echo=FALSE}
+source .rvars
+echo "export ref1='${pathRef}galGal6.ensGene.gtf'" >> .rvars
+echo "export ref2='${pathRef}galGal6.ncbiRefSeq.gtf'" >> .rvars
+echo "export ref3='${pathRef}galGal6.refGene.gtf'" >> .rvars
+```
+
+### Basic stats on GTF files
+
+We here show some basic statistics out of the genome annotation file.
+For this purpose, we use [mikado util stats](https://mikado.readthedocs.io/en/stable/Usage/Utilities/#stats).
+However, while running it on UCSC reference, we encounter some errors in the original file.
+We will start by fixing the file.
+
+#### Fix GTF RefGene file
+
+When running `mikado`, we found out that some exons overlap.
+This causes `mikado` to throw an error such as "start must be less than end", and it stops running.
+We use `gffread -T` to fix this issue.
+
+```{bash, eval=FALSE}
+source .rvars
+gffread -T $ref3 > ${ref3%.*}_fixed.gtf
+```
+
+```{bash, eval=FALSE, echo=FALSE}
+sed -i '/ref3/c\' .rvars
+echo "export ref3='${ref3%.*}_fixed.gtf'" >> .rvars
+source .rvars
+echo $ref3
+```
+
+### Run nextflow pipeline
+
+We designed a scAnnotatiONT pipeline in order to process single-cell RNA-seq from poorly-annotated genomes.
+This pipeline contains also an option to process reference annotations.
+It outputs i) basic statistics on any GTF file, ii) single-cell RNA-seq analyses of our test dataset.
+
+```{bash, eval=FALSE}
+# Pipeline available here (see "paper" branch) : https://github.com/LehmannN/scAnnotatiONT
+bash _run_nextflow_references.sh
+```
+
+### Mikado
+
+```{r mikado-stats}
+file_names <- c('ensGene', 'ncbiRefSeq', 'refGene')
+ref_names <- c('Ensembl', 'NCBI', 'UCSC')
+mikado_files <- c(paste0('output/01-Impact-ref-annotation-scRNA/mikado_stats/galGal6.', file_names,'_stats.tsv'))
+gtf_stats <- list()
+gtf_stats <- lapply(mikado_files, read.csv,
+					header = TRUE,
+					sep = '\t',
+					row.names = 1,
+					quote = "")
+
+show_df <- function(x) {
+	DT::datatable(x,
+				  extensions = c('Buttons', 'Scroller'),
+				  options = list(
+								 dom = 'Bfrtip',
+								 buttons = c('csv', 'pdf'),
+								 deferRender = TRUE,
+								 scrollY = 200,
+								 scrollX = TRUE,
+								 scroller = TRUE))}
+
+show_df(gtf_stats[[1]])
+show_df(gtf_stats[[2]])
+show_df(gtf_stats[[3]])
+```
+
+
+We also use `asm_collect.py`, which is a script to collect info from multiple mikado util stats files.
+See https://mikado.readthedocs.io/en/stable/Usage/Utilities/#stats for more details.
+
+```{bash, eval=FALSE}
+asm_collect.py ${pathOutput}*_stats.tsv > ${pathOutput}main_stats.tsv
+```
+
+```{r mikado-general-stats}
+main_stats <- read.csv("output/01-Impact-ref-annotation-scRNA/mikado_stats/main_stats.tsv",
+					header = TRUE,
+					sep = '\t',
+					row.names = 1,
+					quote = "")
+
+show_df(main_stats)
+```
+
+### Gene lengths
+
+We extract *genes* features from the GFF3 file (see workflow for more details: GTF files do not include the *genes* features).
+This allow us to get gene lengths distribution for each annotation.
+
+```{r gene-length}
+gff3_files <- c(paste0('data/raw/references/annotations/ucsc/galGal6.', file_names,'.gff3'))
+gff3_list <- list()
+gff3_list <- lapply(gff3_files, rtracklayer::import)
+gff3_list <- lapply(gff3_list, as.data.frame)
+genes <- lapply(gff3_list, function(x) filter(x, type == "gene"))
+genes_width <- list(Ensembl = genes[[1]]['width'],
+					NCBI = genes[[2]]['width'],
+					UCSC = genes[[3]]['width'])
+summ <- lapply(genes_width, summary)
+knitr::kable(summ[[1]])
+knitr::kable(summ[[2]])
+knitr::kable(summ[[3]])
+```
+
+```{r}
+# Define colors
+plots_colors <- brewer.pal(8, "Set2")
+# Prepare data for plotting
+width1 <- data.frame(annotation = "Ensembl", value = genes[[1]]['width'])
+width2 <- data.frame(annotation = "NCBI", value = genes[[2]]['width'])
+width3 <- data.frame(annotation = "UCSC", value = genes[[3]]['width'])
+genes_width_df <- rbind(width1, width2, width3)
+```
+
+```{r gene-length-boxplot}
+# Boxplot
+plot1 <- ggplot(genes_width_df, aes(x = annotation, y = log10(width))) +
+	geom_boxplot(width = 0.5, fill = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("Genes lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r gene-length-density}
+# Density plot
+plot1 <- ggplot(genes_width_df, aes(x = log10(width), color = annotation)) +
+	geom_density() +
+	scale_color_manual(values = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("Genes lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r gene-length-histogram}
+# Histogram
+plot1 <- ggplot(genes_width_df, aes(x = log10(width), fill = annotation)) +
+	geom_histogram(bins = 30, color = "#e9ecef", alpha = 0.5, position = 'identity') +
+	scale_color_manual(values = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("Genes lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+
+### 3'UTR lengths
+
+```{r utr-length}
+gtf_files <- c(paste0('data/raw/references/annotations/ucsc/galGal6.', file_names,'.gtf'))
+gtf_list <- list()
+gtf_list <- lapply(gtf_files, rtracklayer::import)
+gtf_list <- lapply(gtf_list, as.data.frame)
+utr <- lapply(gtf_list, function(x) filter(x, type == "3UTR"))
+utr_width <- list(Ensembl = utr[[1]]['width'],
+				  NCBI = utr[[2]]['width'],
+				  UCSC = utr[[3]]['width'])
+summ <- lapply(utr_width, summary)
+knitr::kable(summ[[1]])
+knitr::kable(summ[[2]])
+knitr::kable(summ[[3]])
+```
+
+```{r utr-length-boxplot}
+# Prepare data for plotting
+width1 <- data.frame(annotation = "Ensembl", value = utr[[1]]['width'])
+width2 <- data.frame(annotation = "NCBI", value = utr[[2]]['width'])
+width3 <- data.frame(annotation = "UCSC", value = utr[[3]]['width'])
+utr_width_df <- rbind(width1, width2, width3)
+
+plot1 <- ggplot(utr_width_df, aes(x = annotation, y = log10(width))) +
+	geom_boxplot(width = 0.5, fill = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r utr-length-density}
+# Density plot
+plot1 <- ggplot(utr_width_df, aes(x = log10(width), color = annotation)) +
+	geom_density() +
+	scale_color_manual(values = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r utr-length-histogram}
+# Histogram
+plot1 <- ggplot(utr_width_df, aes(x = log10(width), fill = annotation)) +
+	geom_histogram(bins = 30, color = "#e9ecef", alpha = 0.5, position = 'identity') +
+	scale_color_manual(values = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+### Venn Diagrams
+Intersections counts are produced via [Intervene](https://intervene.readthedocs.io/en/latest/index.html).
+This tool is based on `bedtools interset`.
+We defined intersections if at least 50% of the gene from reference A overlaps a gene in reference B, and vice versa.
+We also consider separately the forward and reverse strand.
+The resulting euler diagram (or proportional Venn diagram) is obtained with the package `eulerr`.
+
+```{bash, eval=FALSE, echo=FALSE}
+source .rvars
+sed -i '/pathOutput/c\' .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/venn_diagrams/'" >> .vars
+source .rvars
+mkdir -p $pathOutput
+```
+
+```{bash, eval=FALSE, echo=FALSE}
+source .rvars
+echo "export genesGff1='${pathRef}galGal6.ensGene_genes.gff3'" >> .rvars
+echo "export genesGff2='${pathRef}galGal6.ncbiRefSeq_genes.gff3'" >> .rvars
+echo "export genesGff3='${pathRef}galGal6.refGene_fixed_genes.gff3'" >> .rvars
+```
+
+```{bash, eval=FALSE}
+source .rvars
+
+intervene venn -i $genesGff1 $genesGff2 $genesGff3 \
+--figtype png \
+--save-overlaps \
+--bedtools-options f=0.5,r,s \
+--output ${pathOutput}
+```
+
+```{r venn-refs, eval=TRUE}
+venn_intersect <- euler(c("UCSC" = 248,
+						  "NCBI" = 8555,
+						  "Ensembl" = 9004,
+						  "NCBI&Ensembl" = 8927,
+						  "NCBI&UCSC" = 253,
+						  "Ensembl&UCSC" = 376,
+						  "NCBI&Ensembl&UCSC" = 6049))
+
+plot(venn_intersect,
+	 quantities = list(type = c("counts"),
+					   col =  c("black", "black", "black"),
+					   fontsize = 20),
+	 labels = list(col = c("black", "black", "black"),
+				   fontsize = 22),
+	 edges = list(col = "white", lex = 2),
+	 fills = plots_colors[3:1],
+	 legend = list(side = "right"))
+```
+
+### GffCompare
+
+## Impact of reference choice on scRNA-seq analyses
+
+```{r, eval=FALSE}
+
+```
