@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>scAnnotatiONT paper</title>
-  <meta name="description" content="scAnnotatiONT paper" />
+  <title>scAnnotatiONT paper companion</title>
+  <meta name="description" content="scAnnotatiONT paper companion" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="scAnnotatiONT paper" />
+  <meta property="og:title" content="scAnnotatiONT paper companion" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/LehmannN/scAnnotatiONT" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="scAnnotatiONT paper" />
+  <meta name="twitter:title" content="scAnnotatiONT paper companion" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Nathalie Lehmann" />
 
 
-<meta name="date" content="2021-07-13" />
+<meta name="date" content="2021-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +34,7 @@
 
 <link rel="next" href="incomplete-annotations-induce-signal-loss.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -53,6 +53,24 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.18/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="libs/pdfmake-1.10.20/pdfmake.js"></script>
+<script src="libs/pdfmake-1.10.20/vfs_fonts.js"></script>
+<link href="libs/dt-ext-buttons-1.10.20/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-buttons-1.10.20/js/dataTables.buttons.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.20/js/buttons.flash.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.20/js/buttons.html5.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.20/js/buttons.colVis.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.20/js/buttons.print.min.js"></script>
+<link href="libs/dt-ext-scroller-1.10.20/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-scroller-1.10.20/js/dataTables.scroller.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -137,11 +155,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#discrepancies-in-reference-annotations"><i class="fa fa-check"></i><b>1.1</b> Discrepancies in reference annotations</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#define-paths"><i class="fa fa-check"></i><b>1.1.1</b> Define paths</a></li>
-<li class="chapter" data-level="1.1.2" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#get-gtf-files"><i class="fa fa-check"></i><b>1.1.2</b> Get GTF files</a></li>
-<li class="chapter" data-level="1.1.3" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#basic-stats-on-gtf-files"><i class="fa fa-check"></i><b>1.1.3</b> Basic stats on GTF files</a></li>
-<li class="chapter" data-level="1.1.4" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#comparison-with-gffcompare"><i class="fa fa-check"></i><b>1.1.4</b> Comparison with GffCompare</a></li>
-<li class="chapter" data-level="1.1.5" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#venn-diagrams"><i class="fa fa-check"></i><b>1.1.5</b> Venn Diagrams</a></li>
+<li class="chapter" data-level="1.1.1" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#define-paths-and-get-reference-annotations"><i class="fa fa-check"></i><b>1.1.1</b> Define paths and get reference annotations</a></li>
+<li class="chapter" data-level="1.1.2" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#basic-stats-on-gtf-files"><i class="fa fa-check"></i><b>1.1.2</b> Basic stats on GTF files</a></li>
+<li class="chapter" data-level="1.1.3" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#run-nextflow-pipeline"><i class="fa fa-check"></i><b>1.1.3</b> Run nextflow pipeline</a></li>
+<li class="chapter" data-level="1.1.4" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#mikado"><i class="fa fa-check"></i><b>1.1.4</b> Mikado</a></li>
+<li class="chapter" data-level="1.1.5" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#gene-lengths"><i class="fa fa-check"></i><b>1.1.5</b> Gene lengths</a></li>
+<li class="chapter" data-level="1.1.6" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#utr-lengths"><i class="fa fa-check"></i><b>1.1.6</b> 3’UTR lengths</a></li>
+<li class="chapter" data-level="1.1.7" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#venn-diagrams"><i class="fa fa-check"></i><b>1.1.7</b> Venn Diagrams</a></li>
+<li class="chapter" data-level="1.1.8" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#gffcompare"><i class="fa fa-check"></i><b>1.1.8</b> GffCompare</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#impact-of-reference-choice-on-scrna-seq-analyses"><i class="fa fa-check"></i><b>1.2</b> Impact of reference choice on scRNA-seq analyses</a></li>
 </ul></li>
@@ -160,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">scAnnotatiONT paper</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">scAnnotatiONT paper companion</a>
           </h1>
         </div>
 
@@ -169,249 +190,433 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">scAnnotatiONT paper</h1>
+<h1 class="title">scAnnotatiONT paper companion</h1>
 <p class="author"><em>Nathalie Lehmann</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-07-13</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-08-29</em></p>
 </div>
 <div id="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses" class="section level1" number="1">
 <h1><span class="header-section-number"> 1</span> Impact of discrepant reference annotations on scRNA-seq analyses</h1>
+<p>In this section, we will have a look at the differences between the three references genome annotation: Ensembl, NCBI (RefSeq) and UCSC.</p>
 <div id="discrepancies-in-reference-annotations" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Discrepancies in reference annotations</h2>
-<div id="define-paths" class="section level3" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Define paths</h3>
+<div id="define-paths-and-get-reference-annotations" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Define paths and get reference annotations</h3>
+<p>These are just sanity steps to define the inputs and outputs of the workflow.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export pathRef=&#39;data/raw/references/annotations/ucsc/&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
 <span id="cb2-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export pathOutput=&#39;output/01-Impact-ref-annotation-scRNA/&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
 <span id="cb3-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$pathRef</span></span>
-<span id="cb3-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$pathOutput</span></span></code></pre></div>
+<span id="cb3-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$pathOutput</span></span>
+<span id="cb3-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ensGene.gtf.gz <span class="dt">\</span></span>
+<span id="cb3-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-6" aria-hidden="true" tabindex="-1"></a>-P <span class="va">$pathRef</span></span>
+<span id="cb3-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ncbiRefSeq.gtf.gz <span class="dt">\</span></span>
+<span id="cb3-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-8" aria-hidden="true" tabindex="-1"></a>-P <span class="va">$pathRef</span></span>
+<span id="cb3-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.refGene.gtf.gz <span class="dt">\</span></span>
+<span id="cb3-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-10" aria-hidden="true" tabindex="-1"></a>-P <span class="va">$pathRef</span></span>
+<span id="cb3-11"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> <span class="va">${pathRef}</span><span class="pp">*</span>.gtf.gz</span></code></pre></div>
 </div>
-<div id="get-gtf-files" class="section level3" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> Get GTF files</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb4-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ensGene.gtf.gz <span class="dt">\</span></span>
-<span id="cb4-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-P</span> <span class="va">$pathRef</span> </span>
-<span id="cb4-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ncbiRefSeq.gtf.gz <span class="dt">\</span></span>
-<span id="cb4-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">-P</span> <span class="va">$pathRef</span></span>
-<span id="cb4-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.refGene.gtf.gz <span class="dt">\</span></span>
-<span id="cb4-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">-P</span> <span class="va">$pathRef</span></span>
-<span id="cb4-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> <span class="va">${pathRef}</span><span class="pp">*</span>.gtf.gz</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb5-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export ref1=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.ensGene.gtf&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb5-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export ref2=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.ncbiRefSeq.gtf&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb5-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export ref3=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.refGene.gtf&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span></code></pre></div>
-</div>
-<div id="basic-stats-on-gtf-files" class="section level3" number="1.1.3">
-<h3><span class="header-section-number">1.1.3</span> Basic stats on GTF files</h3>
-<div id="fix-gtf-refgene-file" class="section level4" number="1.1.3.1">
-<h4><span class="header-section-number">1.1.3.1</span> Fix GTF RefGene file</h4>
+<div id="basic-stats-on-gtf-files" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Basic stats on GTF files</h3>
+<p>We here show some basic statistics out of the genome annotation file.
+For this purpose, we use <a href="https://mikado.readthedocs.io/en/stable/Usage/Utilities/#stats">mikado util stats</a>.
+However, while running it on UCSC reference, we encounter some errors in the original file.
+We will start by fixing the file.</p>
+<div id="fix-gtf-refgene-file" class="section level4" number="1.1.2.1">
+<h4><span class="header-section-number">1.1.2.1</span> Fix GTF RefGene file</h4>
 <p>When running <code>mikado</code>, we found out that some exons overlap.
 This causes <code>mikado</code> to throw an error such as “start must be less than end,” and it stops running.
 We use <code>gffread -T</code> to fix this issue.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb6-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gffread</span> <span class="at">-T</span> <span class="va">$ref3</span> <span class="op">&gt;</span> <span class="va">${ref3</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_fixed.gtf</span>
-<span id="cb6-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;/ref3/c\&#39;</span> .rvars</span>
-<span id="cb6-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export ref3=&#39;</span><span class="va">${ref3</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span><span class="st">_fixed.gtf&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb6-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb6-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$ref3</span></span></code></pre></div>
-<pre><code>## data/raw/references/annotations/ucsc/galGal6.refGene_fixed.gtf</code></pre>
-</div>
-<div id="infer-genes-from-gtf-files" class="section level4" number="1.1.3.2">
-<h4><span class="header-section-number">1.1.3.2</span> Infer genes from GTF files</h4>
-<p>This step will both infer “gene” feature in the annotation files and convert GTF format to GFF3.
-Without this step, we would end up with only CDS, transcript, exons features.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure gffread version is &gt;= v0.12.1 </span></span>
-<span id="cb8-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb8-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;,genes,transcripts&#39;</span> <span class="op">&gt;</span> <span class="va">${pathOutput}</span>counts_table.csv</span>
-<span id="cb8-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gtf <span class="kw">in</span> <span class="va">$ref</span><span class="dt">{</span><span class="dv">1</span><span class="dt">..</span><span class="dv">3</span><span class="dt">}</span></span>
-<span id="cb8-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb8-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$gtf</span></span>
-<span id="cb8-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">filename</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="at">--</span> <span class="st">&quot;</span><span class="va">$gtf</span><span class="st">&quot;</span><span class="va">)</span></span>
-<span id="cb8-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create GFF3 with all features / only genes / only transcripts</span></span>
-<span id="cb8-11"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">gffread</span> <span class="at">-E</span> <span class="at">--keep-genes</span> <span class="va">$gtf</span> <span class="at">-o-</span> <span class="op">&gt;</span> <span class="va">${pathRef}${filename</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>.gff3</span>
-<span id="cb8-12"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">awk</span> <span class="st">&#39;$3~/gene/&#39;</span> <span class="va">${pathRef}${filename</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>.gff3 <span class="op">&gt;</span> <span class="va">${pathRef}${filename</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_genes.gff3</span>
-<span id="cb8-13"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">awk</span> <span class="st">&#39;$3~/transcript/&#39;</span> <span class="va">${pathRef}${filename</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>.gff3 <span class="op">&gt;</span> <span class="va">${pathRef}${filename</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_transcripts.gff3</span>
-<span id="cb8-14"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-15"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save count results (number of genes and transcripts in each annotation)   </span></span>
-<span id="cb8-16"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$filename</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="st">&#39;\n&#39;</span> <span class="st">&#39;,&#39;</span> <span class="op">&gt;&gt;</span> <span class="va">${pathOutput}</span>counts_table.csv</span>
-<span id="cb8-17"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wc</span> <span class="at">-l</span> <span class="va">${pathRef}${filename</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_genes.gff3 <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">&#39; &#39;</span> <span class="at">-f1</span> <span class="kw">|</span>  <span class="fu">tr</span> <span class="st">&#39;\n&#39;</span> <span class="st">&#39;,&#39;</span> <span class="op">&gt;&gt;</span> <span class="va">${pathOutput}</span>counts_table.csv</span>
-<span id="cb8-18"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wc</span> <span class="at">-l</span> <span class="va">${pathRef}${filename</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_transcripts.gff3 <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">&#39; &#39;</span> <span class="at">-f1</span> <span class="op">&gt;&gt;</span> <span class="va">${pathOutput}</span>counts_table.csv</span>
-<span id="cb8-19"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
-</div>
-<div id="run-mikado-stats" class="section level4" number="1.1.3.3">
-<h4><span class="header-section-number">1.1.3.3</span> Run mikado stats</h4>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb9-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;/pathOutput/c\&#39;</span> .rvars</span>
-<span id="cb9-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export pathOutput=&#39;output/01-Impact-ref-annotation-scRNA/mikado_stats/&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb9-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb9-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$pathOutput</span></span>
-<span id="cb9-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$pathOutput</span></span></code></pre></div>
-<pre><code>## output/01-Impact-ref-annotation-scRNA/mikado_stats/</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb11-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gtf <span class="kw">in</span> <span class="va">$ref</span><span class="dt">{</span><span class="dv">1</span><span class="dt">..</span><span class="dv">3</span><span class="dt">}</span></span>
-<span id="cb11-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb11-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$gtf</span></span>
-<span id="cb11-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">filename</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="at">--</span> <span class="st">&quot;</span><span class="va">$gtf</span><span class="st">&quot;</span><span class="va">)</span></span>
-<span id="cb11-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mikado</span> util stats <span class="va">$gtf</span> <span class="va">${pathOutput}${filename</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_stats.tsv</span>
-<span id="cb11-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb11-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="ex">asm_collect.py</span> <span class="va">${pathOutput}</span><span class="pp">*</span>_stats.tsv <span class="op">&gt;</span> <span class="va">${pathOutput}</span>main_stats.tsv</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
+<span id="cb4-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gffread</span> <span class="at">-T</span> <span class="va">$ref3</span> <span class="op">&gt;</span> <span class="va">${ref3</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_fixed.gtf</span></code></pre></div>
 </div>
 </div>
-<div id="comparison-with-gffcompare" class="section level3" number="1.1.4">
-<h3><span class="header-section-number">1.1.4</span> Comparison with GffCompare</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb12-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;/pathOutput/c\&#39;</span> .rvars</span>
-<span id="cb12-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export pathOutput=&#39;output/01-Impact-ref-annotation-scRNA/gffcompare/&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb12-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb12-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$pathOutput</span></span>
-<span id="cb12-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$pathOutput</span></span></code></pre></div>
-<pre><code>## output/01-Impact-ref-annotation-scRNA/gffcompare/</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb14-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gffcompare</span> <span class="at">-r</span> <span class="va">$ref1</span> <span class="at">-o</span> <span class="va">${pathOutput}</span>gffcmp_ensGene_ncbiRefSeq <span class="va">$ref2</span></span>
-<span id="cb14-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gffcompare</span> <span class="at">-r</span> <span class="va">$ref1</span> <span class="at">-o</span> <span class="va">${pathOutput}</span>gffcmp_ensGene_refGene <span class="va">$ref3</span></span>
-<span id="cb14-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">gffcompare</span> <span class="at">-r</span> <span class="va">$ref2</span> <span class="at">-o</span> <span class="va">${pathOutput}</span>gffcmp_ncbiRefSeq_ensGene <span class="va">$ref1</span></span>
-<span id="cb14-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gffcompare</span> <span class="at">-r</span> <span class="va">$ref2</span> <span class="at">-o</span> <span class="va">${pathOutput}</span>gffcmp_ncbiRefSeq_refGene <span class="va">$ref3</span></span>
-<span id="cb14-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gffcompare</span> <span class="at">-r</span> <span class="va">$ref3</span> <span class="at">-o</span> <span class="va">${pathOutput}</span>gffcmp_refGene_ncbiRefSeq <span class="va">$ref2</span></span>
-<span id="cb14-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ex">gffcompare</span> <span class="at">-r</span> <span class="va">$ref3</span> <span class="at">-o</span> <span class="va">${pathOutput}</span>gffcmp_refGene_ensGene <span class="va">$ref1</span></span></code></pre></div>
-<div id="make-gffcompare-results-machine-readable" class="section level4" number="1.1.4.1">
-<h4><span class="header-section-number">1.1.4.1</span> Make GffCompare results machine readable</h4>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">src/utilities/make_gffcmp_stats_readable.sh</span></span></code></pre></div>
+<div id="run-nextflow-pipeline" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Run nextflow pipeline</h3>
+<p>We designed a scAnnotatiONT pipeline in order to process single-cell RNA-seq from poorly-annotated genomes.
+This pipeline contains also an option to process reference annotations.
+It outputs i) basic statistics on any GTF file, ii) single-cell RNA-seq analyses of our test dataset.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pipeline available here (see &quot;paper&quot; branch) : https://github.com/LehmannN/scAnnotatiONT</span></span>
+<span id="cb5-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> _run_nextflow_references.sh</span></code></pre></div>
 </div>
+<div id="mikado" class="section level3" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> Mikado</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-1" aria-hidden="true" tabindex="-1"></a>file_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;ensGene&#39;</span>, <span class="st">&#39;ncbiRefSeq&#39;</span>, <span class="st">&#39;refGene&#39;</span>)</span>
+<span id="cb6-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-2" aria-hidden="true" tabindex="-1"></a>ref_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Ensembl&#39;</span>, <span class="st">&#39;NCBI&#39;</span>, <span class="st">&#39;UCSC&#39;</span>)</span>
+<span id="cb6-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-3" aria-hidden="true" tabindex="-1"></a>mikado_files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">&#39;output/01-Impact-ref-annotation-scRNA/mikado_stats/galGal6.&#39;</span>, file_names,<span class="st">&#39;_stats.tsv&#39;</span>))</span>
+<span id="cb6-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-4" aria-hidden="true" tabindex="-1"></a>gtf_stats <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb6-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-5" aria-hidden="true" tabindex="-1"></a>gtf_stats <span class="ot">&lt;-</span> <span class="fu">lapply</span>(mikado_files, read.csv,</span>
+<span id="cb6-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>,</span>
+<span id="cb6-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">row.names =</span> <span class="dv">1</span>,</span>
+<span id="cb6-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">quote =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb6-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-11" aria-hidden="true" tabindex="-1"></a>show_df <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb6-12"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-12" aria-hidden="true" tabindex="-1"></a>    DT<span class="sc">::</span><span class="fu">datatable</span>(x,</span>
+<span id="cb6-13"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-13" aria-hidden="true" tabindex="-1"></a>                  <span class="at">extensions =</span> <span class="fu">c</span>(<span class="st">&#39;Buttons&#39;</span>, <span class="st">&#39;Scroller&#39;</span>),</span>
+<span id="cb6-14"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb6-15"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-15" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">dom =</span> <span class="st">&#39;Bfrtip&#39;</span>,</span>
+<span id="cb6-16"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-16" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">buttons =</span> <span class="fu">c</span>(<span class="st">&#39;csv&#39;</span>, <span class="st">&#39;pdf&#39;</span>),</span>
+<span id="cb6-17"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-17" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">deferRender =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-18"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-18" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">scrollY =</span> <span class="dv">200</span>,</span>
+<span id="cb6-19"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-19" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">scrollX =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-20"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-20" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">scroller =</span> <span class="cn">TRUE</span>))}</span>
+<span id="cb6-21"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fu">show_df</span>(gtf_stats[[<span class="dv">1</span>]])</span></code></pre></div>
+<div id="htmlwidget-469bca3cff971ce63d0c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-469bca3cff971ce63d0c">{"x":{"filter":"none","extensions":["Buttons","Scroller"],"data":[["Number of genes","Number of genes (coding)","Number of monoexonic genes","Transcripts per gene","Coding transcripts per gene","CDNA lengths","CDNA lengths (mRNAs)","CDS lengths","CDS lengths (mRNAs)","CDS/cDNA ratio","Monoexonic transcripts","MonoCDS transcripts","Exons per transcript","Exons per transcript (mRNAs)","Exon lengths","Exon lengths (mRNAs)","Intron lengths","Intron lengths (mRNAs)","CDS exons per transcript","CDS exons per transcript (mRNAs)","CDS exon lengths","CDS Intron lengths","5'UTR exon number","3'UTR exon number","5'UTR length","3'UTR length","Stop distance from junction","Intergenic distances","Intergenic distances (coding)"],[24356,16878,2907,39288,28444,84409101,71058218,53094622,null,null,2907,1756,369120,3309,null,null,null,null,2276,2276,53094622,902793760,28444,28444,4317198,13646398,null,null,null],[null,null,null,1.61,1.17,2148.47,2498.18,1351.42,1866.64,73.55,629.32,1153.16,9.4,11.69,228.68,213.76,3497.99,3285.96,8.12,11.21,166.5,3108.34,1.05,0.69,151.78,479.76,10.27,17506.56,32408.75],[null,null,null,1,1,110,303,0,582,100,110,297,3,4,99,99,82,82,0,4,99,81,1,1,0,0,0,21,21],[null,null,null,1,0,12,12,0,12,4,12,12,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,-830858,-711482],[null,null,null,1,0,69,303,0,228,16,33,159,1,1,23,23,70,72,0,1,17,71,0,0,0,0,0,-126328,-78385],[null,null,null,1,0,282,638,0,366,27,55,264,1,2,48,48,90,91,0,1,43,89,0,0,0,0,0,-19275,-2184],[null,null,null,1,0,621,897,0,495,36,64,300,2,2,63,63,127,130,0,2,59,127,0,0,0,0,0,-2020,-33],[null,null,null,1,0,1115,1395,0,840,54,85,442,3,5,91,91,385,385,0,4,87,380,0,0,0,0,0,820,1238],[null,null,null,1,1,1779,2102,969,1374,79,133,1041,6,9,130,129,910,894,5,8,124,880,1,1,58,169,0,5458,5839],[null,null,null,2,2,2698,3061,1824,2280,100,1065,1473,12,15,188,182,2315,2196,12,15,170,2113,2,1,203,762,0,20732,22408],[null,null,null,3,3,3966,4434,3201,3660,100,1716,2128,21,24,402,327,6733,6197,21,24,238,5803,2,1,444,1358,0,59773,78383],[null,null,null,4,4,5110,5695,4365,5031,100,2335,2784,28,31,862,728,13879,12670,27,30,367,11692,3,2,684,1866,2,100910,170636],[null,null,null,6,6,8581,9353,7855,8864,100,3383,4010,48,52,1984,1891,49792,46267,47,52,1147,42895,4,2,973,3059,298,232518,503386],[null,null,null,11,11,25998,25327,25134,25134,100,12447,12447,139,139,17106,17106,678754,678754,139,139,17106,678753,40,14,5637,13396,2893,1407860,2034514]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Total<\/th>\n      <th>Average<\/th>\n      <th>Mode<\/th>\n      <th>Min<\/th>\n      <th>X1.<\/th>\n      <th>X5.<\/th>\n      <th>X10.<\/th>\n      <th>X25.<\/th>\n      <th>Median<\/th>\n      <th>X75.<\/th>\n      <th>X90.<\/th>\n      <th>X95.<\/th>\n      <th>X99.<\/th>\n      <th>Max<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["csv","pdf"],"deferRender":true,"scrollY":200,"scrollX":true,"scroller":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13,14]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_df</span>(gtf_stats[[<span class="dv">2</span>]])</span></code></pre></div>
+<div id="htmlwidget-88e6fc9ccef6f0841545" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-88e6fc9ccef6f0841545">{"x":{"filter":"none","extensions":["Buttons","Scroller"],"data":[["Number of genes","Number of genes (coding)","Number of monoexonic genes","Transcripts per gene","Coding transcripts per gene","CDNA lengths","CDNA lengths (mRNAs)","CDS lengths","CDS lengths (mRNAs)","CDS/cDNA ratio","Monoexonic transcripts","MonoCDS transcripts","Exons per transcript","Exons per transcript (mRNAs)","Exon lengths","Exon lengths (mRNAs)","Intron lengths","Intron lengths (mRNAs)","CDS exons per transcript","CDS exons per transcript (mRNAs)","CDS exon lengths","CDS Intron lengths","5'UTR exon number","3'UTR exon number","5'UTR length","3'UTR length","Stop distance from junction","Intergenic distances","Intergenic distances (coding)"],[23726,17444,1985,62170,49668,264970966,213165199,108526880,null,null,2071,2578,796527,5886,null,null,null,null,2250,2250,108526880,1992984843,49668,49668,25816801,78821518,null,null,null],[null,null,null,2.62,2.09,4262.04,4291.8,1745.65,2185.05,55.53,1182.37,1091.44,12.81,14.4,332.66,298.05,3670.43,3581.22,10.77,13.48,162.07,3214.67,1.74,1.09,519.79,1586.97,60.44,16719.12,27700.76],[null,null,null,1,1,110,1506,0,975,100,110,297,2,4,105,105,82,82,0,5,105,81,1,1,0,0,0,138,148],[null,null,null,1,0,48,189,0,9,2,48,9,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,-853879,-747007],[null,null,null,1,0,104,533,0,282,9,58,231,1,1,22,21,74,74,0,1,15,72,0,0,0,0,0,-120735,-39906],[null,null,null,1,0,662,905,0,454,16,68,297,2,2,47,46,95,95,0,1,39,93,1,1,7,29,0,-20863,-2279],[null,null,null,1,0,1007,1219,0,606,22,76,360,2,3,63,62,140,140,0,3,56,135,1,1,19,100,0,-3800,-293],[null,null,null,1,0,1850,1992,492,969,36,96,603,5,6,92,91,401,399,2,5,85,387,1,1,71,304,0,128,320],[null,null,null,1,1,3282,3402,1242,1566,56,161,963,9,11,131,130,932,919,8,10,122,886,1,1,172,922,0,2610,3184],[null,null,null,3,2,5595,5600,2307,2661,76,1392,1248,17,19,192,187,2371,2302,15,18,169,2137,2,1,390,2121,0,14288,15152],[null,null,null,6,5,8504,8333,3876,4308,89,3313,1959,27,28,489,395,7034,6731,25,27,236,5874,3,1,1036,3932,0,53035,59935],[null,null,null,9,8,10867,10420,5313,5820,94,4926,2457,34,36,1332,1100,14492,13956,32,35,339,11808,4,2,2390,5221,20,108653,137965],[null,null,null,17,15,17540,15948,9362,10385,100,10229,3582,58,63,4527,4021,52815,51073,57,63,1083,45101,6,3,6479,8844,1443,290749,501409],[null,null,null,52,52,113235,42722,32925,32925,100,22664,12189,157,157,109030,41733,923122,923122,155,155,12189,923121,40,25,28538,40768,32150,2015610,2095675]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Total<\/th>\n      <th>Average<\/th>\n      <th>Mode<\/th>\n      <th>Min<\/th>\n      <th>X1.<\/th>\n      <th>X5.<\/th>\n      <th>X10.<\/th>\n      <th>X25.<\/th>\n      <th>Median<\/th>\n      <th>X75.<\/th>\n      <th>X90.<\/th>\n      <th>X95.<\/th>\n      <th>X99.<\/th>\n      <th>Max<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["csv","pdf"],"deferRender":true,"scrollY":200,"scrollX":true,"scroller":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13,14]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_df</span>(gtf_stats[[<span class="dv">3</span>]])</span></code></pre></div>
+<div id="htmlwidget-ce899b72d06e63b11283" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ce899b72d06e63b11283">{"x":{"filter":"none","extensions":["Buttons","Scroller"],"data":[["Number of genes","Number of genes (coding)","Number of monoexonic genes","Transcripts per gene","Coding transcripts per gene","CDNA lengths","CDNA lengths (mRNAs)","CDS lengths","CDS lengths (mRNAs)","CDS/cDNA ratio","Monoexonic transcripts","MonoCDS transcripts","Exons per transcript","Exons per transcript (mRNAs)","Exon lengths","Exon lengths (mRNAs)","Intron lengths","Intron lengths (mRNAs)","CDS exons per transcript","CDS exons per transcript (mRNAs)","CDS exon lengths","CDS Intron lengths","5'UTR exon number","3'UTR exon number","5'UTR length","3'UTR length","Stop distance from junction","Intergenic distances","Intergenic distances (coding)"],[6938,6065,1053,7482,6451,15322364,15154388,9386506,null,null,1183,406,66442,2469,null,null,null,null,1276,1276,9386506,148841261,6451,6451,668005,5099877,null,null,null],[null,null,null,1.06,0.92,2047.9,2349.15,1254.55,1455.05,63.97,315.48,909.73,8.88,10.1,230.61,232.67,2816.38,2818.93,8.33,9.66,150.65,2664.73,1.22,1,103.55,790.56,22.88,122466.93,141445.71],[null,null,null,1,1,110,763,0,297,100,110,297,1,4,96,96,86,86,0,4,96,85,1,1,0,0,0,-56,242],[null,null,null,1,0,48,189,0,94,4,48,94,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,-1066566,-1066566],[null,null,null,1,0,57,388,0,207,14,54,159,1,1,23,23,68,68,0,1,15,69,0,0,0,0,0,-33451,-806],[null,null,null,1,0,79,633,0,312,23,57,264,1,2,48,48,87,87,0,1,41,87,0,0,0,0,0,30,297],[null,null,null,1,0,106,805,0,423,29,61,297,1,3,62,63,118,118,0,2,57,117,0,1,0,17,0,512,1111],[null,null,null,1,1,896,1210,477,684,45,76,400,3,4,89,90,343,343,3,4,84,341,1,1,23,153,0,4751,5905],[null,null,null,1,1,1710,1965,990,1128,66,94,867,7,8,128,129,797,798,6,7,120,786,1,1,65,453,0,28908,32474],[null,null,null,1,1,2839,3011,1593,1752,84,110,1146,12,13,183,184,1886,1887,11,12,165,1816,2,1,138,1124,0,115189,134322],[null,null,null,1,1,4077,4276,2592,2760,96,1063,1606,19,20,360,367,5177,5177,18,20,223,4836,2,1,245,1993,0,331622,377617],[null,null,null,1,1,4980,5207,3444,3660,100,1566,1985,25,26,816,826,10513,10515,24,25,308,9668,3,2,334,2616,17,557351,638595],[null,null,null,3,2,8125,8370,6263,6554,100,3065,2805,40,42,2306,2320,38748,38750,40,42,889,36196,3,2,580,4080,770,1249560,1514609],[null,null,null,20,7,15866,15866,15768,15768,100,5606,7692,105,105,13552,13552,386968,386968,105,105,12750,386967,8,10,3712,13405,3405,5189273,6132906]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Total<\/th>\n      <th>Average<\/th>\n      <th>Mode<\/th>\n      <th>Min<\/th>\n      <th>X1.<\/th>\n      <th>X5.<\/th>\n      <th>X10.<\/th>\n      <th>X25.<\/th>\n      <th>Median<\/th>\n      <th>X75.<\/th>\n      <th>X90.<\/th>\n      <th>X95.<\/th>\n      <th>X99.<\/th>\n      <th>Max<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["csv","pdf"],"deferRender":true,"scrollY":200,"scrollX":true,"scroller":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13,14]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>We also use <code>asm_collect.py</code>, which is a script to collect info from multiple mikado util stats files.
+See <a href="https://mikado.readthedocs.io/en/stable/Usage/Utilities/#stats" class="uri">https://mikado.readthedocs.io/en/stable/Usage/Utilities/#stats</a> for more details.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">asm_collect.py</span> <span class="va">${pathOutput}</span><span class="pp">*</span>_stats.tsv <span class="op">&gt;</span> <span class="va">${pathOutput}</span>main_stats.tsv</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb10-1" aria-hidden="true" tabindex="-1"></a>main_stats <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;output/01-Impact-ref-annotation-scRNA/mikado_stats/main_stats.tsv&quot;</span>,</span>
+<span id="cb10-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb10-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb10-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>,</span>
+<span id="cb10-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb10-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">row.names =</span> <span class="dv">1</span>,</span>
+<span id="cb10-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb10-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">quote =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb10-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">show_df</span>(main_stats)</span></code></pre></div>
+<div id="htmlwidget-99ef03acd76fe8b2fd75" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-99ef03acd76fe8b2fd75">{"x":{"filter":"none","extensions":["Buttons","Scroller"],"data":[["galGal6.ensGene_stats.tsv","galGal6.ncbiRefSeq_stats.tsv","galGal6.refGene_fixed_stats.tsv"],[24356,23726,6938],[2907,1985,1053],[39288,62170,7482],[1.61,2.62,1.06],[2148.47,4262.04,2047.9],[2907,2071,1183],[369120,796527,66442],[9.4,12.81,8.88],[228.68,332.66,230.61]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>genes<\/th>\n      <th>monoexonic_genes<\/th>\n      <th>transcripts<\/th>\n      <th>transcripts_per_gene<\/th>\n      <th>transcript_len_mean<\/th>\n      <th>monoexonic_transcripts<\/th>\n      <th>exons<\/th>\n      <th>exons_per_transcript<\/th>\n      <th>exon_len_mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["csv","pdf"],"deferRender":true,"scrollY":200,"scrollX":true,"scroller":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="venn-diagrams" class="section level3" number="1.1.5">
-<h3><span class="header-section-number">1.1.5</span> Venn Diagrams</h3>
-<p>All Venn diagrams are produced via Intervene. This tool is based on <code>bedtools interset</code>.
-Euler diagrams are obtained with <code>eulerr</code>.</p>
-<div id="gene-level" class="section level4" number="1.1.5.1">
-<h4><span class="header-section-number">1.1.5.1</span> Gene level</h4>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb16-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;/pathOutput/c\&#39;</span> .rvars</span>
-<span id="cb16-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export pathOutput=&#39;output/01-Impact-ref-annotation-scRNA/venn_diagrams/genes/&#39;&quot;</span> <span class="op">&gt;&gt;</span> .vars</span>
-<span id="cb16-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb16-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$pathOutput</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb17-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export genesGff1=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.ensGene_genes.gff3&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb17-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export genesGff2=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.ncbiRefSeq_genes.gff3&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb17-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export genesGff3=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.refGene_fixed_genes.gff3&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb18-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$genesGff1</span></span>
-<span id="cb18-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$genesGff2</span></span>
-<span id="cb18-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$genesGff3</span></span>
-<span id="cb18-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="ex">intervene</span> venn <span class="at">-i</span> <span class="va">$genesGff1</span> <span class="va">$genesGff2</span> <span class="va">$genesGff3</span> <span class="dt">\</span></span>
-<span id="cb18-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--figtype</span> png <span class="dt">\</span></span>
-<span id="cb18-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--save-overlaps</span> <span class="dt">\</span></span>
-<span id="cb18-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">--bedtools-options</span> f=0.5,r,s <span class="dt">\</span></span>
-<span id="cb18-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output</span> <span class="va">${pathOutput}</span></span>
-<span id="cb18-11"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> <span class="va">${pathOutput}</span>sets/<span class="pp">*</span>.bed <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb18-13"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">awk</span> <span class="at">-v</span> OFS=<span class="st">&quot;\t&quot;</span> <span class="st">&#39;$1=$1&#39;</span> <span class="op">&gt;</span> <span class="va">${pathOutput}</span>venn_counts.tsv</span></code></pre></div>
-<pre><code>## data/raw/references/annotations/ucsc/galGal6.ensGene_genes.gff3
-## data/raw/references/annotations/ucsc/galGal6.ncbiRefSeq_genes.gff3
-## data/raw/references/annotations/ucsc/galGal6.refGene_fixed_genes.gff3
-## usage: intervene venn [options]
-## intervene &lt;subcommand&gt; [options] venn: error: argument -o/--output: expected one argument
-## wc: &#39;sets/*.bed&#39;: Aucun fichier ou dossier de ce type</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-1" aria-hidden="true" tabindex="-1"></a>venn_intersect <span class="ot">&lt;-</span> <span class="fu">euler</span>(<span class="fu">c</span>(<span class="st">&quot;refGene&quot;</span> <span class="ot">=</span> <span class="dv">248</span>,</span>
-<span id="cb20-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ncbiRefSeq&quot;</span> <span class="ot">=</span> <span class="dv">8555</span>,</span>
-<span id="cb20-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Ensembl&quot;</span> <span class="ot">=</span> <span class="dv">9004</span>,</span>
-<span id="cb20-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ncbiRefSeq&amp;Ensembl&quot;</span> <span class="ot">=</span> <span class="dv">8927</span>,</span>
-<span id="cb20-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ncbiRefSeq&amp;refGene&quot;</span> <span class="ot">=</span> <span class="dv">253</span>,</span>
-<span id="cb20-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Ensembl&amp;refGene&quot;</span> <span class="ot">=</span> <span class="dv">376</span>,</span>
-<span id="cb20-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ncbiRefSeq&amp;Ensembl&amp;refGene&quot;</span> <span class="ot">=</span> <span class="dv">6049</span>))</span>
-<span id="cb20-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(venn_intersect,</span>
-<span id="cb20-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">quantities =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;percent&quot;</span>, <span class="st">&quot;counts&quot;</span>),</span>
-<span id="cb20-11"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span>  <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>),</span>
-<span id="cb20-12"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize =</span> <span class="dv">15</span>),</span>
-<span id="cb20-13"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>),</span>
-<span id="cb20-14"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize =</span> <span class="dv">20</span>),</span>
-<span id="cb20-15"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lex =</span> <span class="dv">2</span>),</span>
-<span id="cb20-16"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fills =</span> <span class="fu">c</span>(<span class="st">&quot;limegreen&quot;</span>, <span class="st">&quot;darkgoldenrod1&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>),</span>
-<span id="cb20-17"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">side =</span> <span class="st">&quot;right&quot;</span>))</span></code></pre></div>
-<p><img src="scAnnotatiONT-paper_files/figure-html/venn-ref-gene-1.png" width="960" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(venn_intersect,</span>
-<span id="cb21-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">quantities =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;percent&quot;</span>, <span class="st">&quot;counts&quot;</span>),</span>
-<span id="cb21-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span>  <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb21-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize =</span> <span class="dv">15</span>),</span>
-<span id="cb21-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb21-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize =</span> <span class="dv">20</span>),</span>
-<span id="cb21-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lex =</span> <span class="dv">2</span>),</span>
-<span id="cb21-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">side =</span> <span class="st">&quot;right&quot;</span>))</span></code></pre></div>
-<p><img src="scAnnotatiONT-paper_files/figure-html/venn-ref-gene-2.png" width="960" style="display: block; margin: auto;" /></p>
+<div id="gene-lengths" class="section level3" number="1.1.5">
+<h3><span class="header-section-number">1.1.5</span> Gene lengths</h3>
+<p>We extract <em>genes</em> features from the GFF3 file (see workflow for more details: GTF files do not include the <em>genes</em> features).
+This allow us to get gene lengths distribution for each annotation.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-1" aria-hidden="true" tabindex="-1"></a>gff3_files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">&#39;data/raw/references/annotations/ucsc/galGal6.&#39;</span>, file_names,<span class="st">&#39;.gff3&#39;</span>))</span>
+<span id="cb11-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-2" aria-hidden="true" tabindex="-1"></a>gff3_list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb11-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-3" aria-hidden="true" tabindex="-1"></a>gff3_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gff3_files, rtracklayer<span class="sc">::</span>import)</span>
+<span id="cb11-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-4" aria-hidden="true" tabindex="-1"></a>gff3_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gff3_list, as.data.frame)</span>
+<span id="cb11-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-5" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gff3_list, <span class="cf">function</span>(x) <span class="fu">filter</span>(x, type <span class="sc">==</span> <span class="st">&quot;gene&quot;</span>))</span>
+<span id="cb11-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-6" aria-hidden="true" tabindex="-1"></a>genes_width <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Ensembl =</span> genes[[<span class="dv">1</span>]][<span class="st">&#39;width&#39;</span>],</span>
+<span id="cb11-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">NCBI =</span> genes[[<span class="dv">2</span>]][<span class="st">&#39;width&#39;</span>],</span>
+<span id="cb11-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">UCSC =</span> genes[[<span class="dv">3</span>]][<span class="st">&#39;width&#39;</span>])</span>
+<span id="cb11-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-9" aria-hidden="true" tabindex="-1"></a>summ <span class="ot">&lt;-</span> <span class="fu">lapply</span>(genes_width, summary)</span>
+<span id="cb11-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb11-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(summ[[<span class="dv">1</span>]])</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Min. : 12</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">1st Qu.: 3366</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Median : 9414</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mean : 25933</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3rd Qu.: 25488</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Max. :1060737</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb12-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(summ[[<span class="dv">2</span>]])</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Min. : 48</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">1st Qu.: 3575</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Median : 9616</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mean : 48565</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3rd Qu.: 26359</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Max. :144520790</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb13-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(summ[[<span class="dv">3</span>]])</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Min. : 48</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">1st Qu.: 2938</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Median : 9268</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mean : 38997</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3rd Qu.: 23802</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Max. :41978018</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define colors</span></span>
+<span id="cb14-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-2" aria-hidden="true" tabindex="-1"></a>plots_colors <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">&quot;Set2&quot;</span>)</span>
+<span id="cb14-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for plotting</span></span>
+<span id="cb14-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-4" aria-hidden="true" tabindex="-1"></a>width1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">annotation =</span> <span class="st">&quot;Ensembl&quot;</span>, <span class="at">value =</span> genes[[<span class="dv">1</span>]][<span class="st">&#39;width&#39;</span>])</span>
+<span id="cb14-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-5" aria-hidden="true" tabindex="-1"></a>width2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">annotation =</span> <span class="st">&quot;NCBI&quot;</span>, <span class="at">value =</span> genes[[<span class="dv">2</span>]][<span class="st">&#39;width&#39;</span>])</span>
+<span id="cb14-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-6" aria-hidden="true" tabindex="-1"></a>width3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">annotation =</span> <span class="st">&quot;UCSC&quot;</span>, <span class="at">value =</span> genes[[<span class="dv">3</span>]][<span class="st">&#39;width&#39;</span>])</span>
+<span id="cb14-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb14-7" aria-hidden="true" tabindex="-1"></a>genes_width_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(width1, width2, width3)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
+<span id="cb15-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb15-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(genes_width_df, <span class="fu">aes</span>(<span class="at">x =</span> annotation, <span class="at">y =</span> <span class="fu">log10</span>(width))) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> plots_colors[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;Genes lengths (log10) of the 3 reference annotations&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb15-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb15-6" aria-hidden="true" tabindex="-1"></a>plot1</span></code></pre></div>
+<p><img src="scAnnotatiONT-paper_files/figure-html/gene-length-boxplot-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot</span></span>
+<span id="cb16-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(genes_width_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(width), <span class="at">color =</span> annotation)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb16-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> plots_colors[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;Genes lengths (log10) of the 3 reference annotations&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb16-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb16-7" aria-hidden="true" tabindex="-1"></a>plot1</span></code></pre></div>
+<p><img src="scAnnotatiONT-paper_files/figure-html/gene-length-density-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram</span></span>
+<span id="cb17-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(genes_width_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(width), <span class="at">fill =</span> annotation)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">color =</span> <span class="st">&quot;#e9ecef&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> plots_colors[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;Genes lengths (log10) of the 3 reference annotations&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb17-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb17-7" aria-hidden="true" tabindex="-1"></a>plot1</span></code></pre></div>
+<p><img src="scAnnotatiONT-paper_files/figure-html/gene-length-histogram-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="transcript-level" class="section level4" number="1.1.5.2">
-<h4><span class="header-section-number">1.1.5.2</span> Transcript level</h4>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb22-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;/pathOutput/c\&#39;</span> .rvars</span>
-<span id="cb22-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export pathOutput=&#39;output/01-Impact-ref-annotation-scRNA/venn_diagrams/transcripts/&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb22-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb22-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">$pathOutput</span></span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
-<span id="cb23-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export trxGff1=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.ensGene_transcripts.gff3&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb23-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export trxGff2=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.ncbiRefSeq_transcripts.gff3&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span>
-<span id="cb23-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;export trxGff3=&#39;</span><span class="va">${pathRef}</span><span class="st">galGal6.refGene_fixed_transcripts.gff3&#39;&quot;</span> <span class="op">&gt;&gt;</span> .rvars</span></code></pre></div>
+<div id="utr-lengths" class="section level3" number="1.1.6">
+<h3><span class="header-section-number">1.1.6</span> 3’UTR lengths</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-1" aria-hidden="true" tabindex="-1"></a>gtf_files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">&#39;data/raw/references/annotations/ucsc/galGal6.&#39;</span>, file_names,<span class="st">&#39;.gtf&#39;</span>))</span>
+<span id="cb18-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-2" aria-hidden="true" tabindex="-1"></a>gtf_list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb18-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-3" aria-hidden="true" tabindex="-1"></a>gtf_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gtf_files, rtracklayer<span class="sc">::</span>import)</span>
+<span id="cb18-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-4" aria-hidden="true" tabindex="-1"></a>gtf_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gtf_list, as.data.frame)</span>
+<span id="cb18-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-5" aria-hidden="true" tabindex="-1"></a>utr <span class="ot">&lt;-</span> <span class="fu">lapply</span>(gtf_list, <span class="cf">function</span>(x) <span class="fu">filter</span>(x, type <span class="sc">==</span> <span class="st">&quot;3UTR&quot;</span>))</span>
+<span id="cb18-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-6" aria-hidden="true" tabindex="-1"></a>utr_width <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Ensembl =</span> utr[[<span class="dv">1</span>]][<span class="st">&#39;width&#39;</span>],</span>
+<span id="cb18-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">NCBI =</span> utr[[<span class="dv">2</span>]][<span class="st">&#39;width&#39;</span>],</span>
+<span id="cb18-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">UCSC =</span> utr[[<span class="dv">3</span>]][<span class="st">&#39;width&#39;</span>])</span>
+<span id="cb18-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-9" aria-hidden="true" tabindex="-1"></a>summ <span class="ot">&lt;-</span> <span class="fu">lapply</span>(utr_width, summary)</span>
+<span id="cb18-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb18-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(summ[[<span class="dv">1</span>]])</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Min. : 1</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">1st Qu.: 157</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Median : 481</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mean : 696</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3rd Qu.: 1000</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Max. :13396</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb19-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(summ[[<span class="dv">2</span>]])</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Min. : 1.0</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">1st Qu.: 218.2</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Median : 795.0</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mean : 1453.2</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3rd Qu.: 1964.0</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Max. :40768.0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb20-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(summ[[<span class="dv">3</span>]])</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Min. : 1.0</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">1st Qu.: 167.0</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Median : 457.0</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mean : 787.1</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3rd Qu.: 1094.5</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Max. :13405.0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for plotting</span></span>
+<span id="cb21-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-2" aria-hidden="true" tabindex="-1"></a>width1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">annotation =</span> <span class="st">&quot;Ensembl&quot;</span>, <span class="at">value =</span> utr[[<span class="dv">1</span>]][<span class="st">&#39;width&#39;</span>])</span>
+<span id="cb21-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-3" aria-hidden="true" tabindex="-1"></a>width2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">annotation =</span> <span class="st">&quot;NCBI&quot;</span>, <span class="at">value =</span> utr[[<span class="dv">2</span>]][<span class="st">&#39;width&#39;</span>])</span>
+<span id="cb21-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-4" aria-hidden="true" tabindex="-1"></a>width3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">annotation =</span> <span class="st">&quot;UCSC&quot;</span>, <span class="at">value =</span> utr[[<span class="dv">3</span>]][<span class="st">&#39;width&#39;</span>])</span>
+<span id="cb21-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-5" aria-hidden="true" tabindex="-1"></a>utr_width_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(width1, width2, width3)</span>
+<span id="cb21-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-7" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(utr_width_df, <span class="fu">aes</span>(<span class="at">x =</span> annotation, <span class="at">y =</span> <span class="fu">log10</span>(width))) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> plots_colors[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;3&#39;UTR lengths (log10) of the 3 reference annotations&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb21-11"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb21-11" aria-hidden="true" tabindex="-1"></a>plot1</span></code></pre></div>
+<p><img src="scAnnotatiONT-paper_files/figure-html/utr-length-boxplot-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Density plot</span></span>
+<span id="cb22-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(utr_width_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(width), <span class="at">color =</span> annotation)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb22-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> plots_colors[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;3&#39;UTR lengths (log10) of the 3 reference annotations&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb22-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb22-7" aria-hidden="true" tabindex="-1"></a>plot1</span></code></pre></div>
+<p><img src="scAnnotatiONT-paper_files/figure-html/utr-length-density-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram</span></span>
+<span id="cb23-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(utr_width_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(width), <span class="at">fill =</span> annotation)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">color =</span> <span class="st">&quot;#e9ecef&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> plots_colors[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;3&#39;UTR lengths (log10) of the 3 reference annotations&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb23-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb23-7" aria-hidden="true" tabindex="-1"></a>plot1</span></code></pre></div>
+<p><img src="scAnnotatiONT-paper_files/figure-html/utr-length-histogram-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="venn-diagrams" class="section level3" number="1.1.7">
+<h3><span class="header-section-number">1.1.7</span> Venn Diagrams</h3>
+<p>Intersections counts are produced via <a href="https://intervene.readthedocs.io/en/latest/index.html">Intervene</a>.
+This tool is based on <code>bedtools interset</code>.
+We defined intersections if at least 50% of the gene from reference A overlaps a gene in reference B, and vice versa.
+We also consider separately the forward and reverse strand.
+The resulting euler diagram (or proportional Venn diagram) is obtained with the package <code>eulerr</code>.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .rvars</span>
 <span id="cb24-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">intervene</span> venn <span class="at">--i</span> <span class="va">$trxGff1</span> <span class="va">$trxGff2</span> <span class="va">$trxGff3</span> <span class="dt">\</span></span>
-<span id="cb24-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--figtype</span> png <span class="dt">\</span></span>
-<span id="cb24-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--save-overlaps</span> <span class="dt">\</span></span>
-<span id="cb24-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--bedtools-options</span> f=0.5,r,s <span class="dt">\</span></span>
-<span id="cb24-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output</span> <span class="va">${pathOutput}</span></span>
-<span id="cb24-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> <span class="va">${pathOutput}</span>sets/<span class="pp">*</span>.bed <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb24-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">awk</span> <span class="at">-v</span> OFS=<span class="st">&quot;\t&quot;</span> <span class="st">&#39;$1=$1&#39;</span> <span class="op">&gt;</span> <span class="va">${pathOutput}</span>venn_counts.tsv</span></code></pre></div>
-<pre><code>## 
-## Generating a 3-way &quot;venn&quot; diagram. Please wait...
-## 
-## 
-## Done! Please check your results @ output/01-Impact-ref-annotation-scRNA/venn_diagrams/transcripts/. 
-## Thank you for using Intervene!</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb26-1" aria-hidden="true" tabindex="-1"></a>path_output <span class="ot">&lt;-</span> <span class="st">&quot;output/01-Impact-ref-annotation-scRNA/venn_diagrams/transcripts/&quot;</span></span>
-<span id="cb26-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb26-2" aria-hidden="true" tabindex="-1"></a>venn_counts <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="fu">paste0</span>(path_output, <span class="st">&#39;venn_counts.tsv&#39;</span>),</span>
-<span id="cb26-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb26-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb26-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb26-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&#39;count&#39;</span>, <span class="st">&#39;filePath&#39;</span>),</span>
-<span id="cb26-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb26-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>)</span>
-<span id="cb26-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb26-6" aria-hidden="true" tabindex="-1"></a>strX <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(<span class="at">x =</span> venn_counts[<span class="dv">1</span>,<span class="dv">2</span>], <span class="at">split =</span> <span class="st">&#39;/&#39;</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb26-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#venn_counts %&gt;% mutate(fileName = strsplit(x = filePath, split = &#39;/&#39;))[[1]][length(strX)] </span></span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-1" aria-hidden="true" tabindex="-1"></a>venn_intersect <span class="ot">&lt;-</span> <span class="fu">euler</span>(<span class="fu">c</span>(<span class="st">&quot;refGene&quot;</span> <span class="ot">=</span> <span class="dv">68</span>,</span>
-<span id="cb27-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ncbiRefSeq&quot;</span> <span class="ot">=</span> <span class="dv">15647</span>,</span>
-<span id="cb27-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Ensembl&quot;</span> <span class="ot">=</span> <span class="dv">12567</span>,</span>
-<span id="cb27-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ncbiRefSeq&amp;Ensembl&quot;</span> <span class="ot">=</span> <span class="dv">16141</span>,</span>
-<span id="cb27-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ncbiRefSeq&amp;refGene&quot;</span> <span class="ot">=</span> <span class="dv">377</span>,</span>
-<span id="cb27-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Ensembl&amp;refGene&quot;</span> <span class="ot">=</span> <span class="dv">192</span>,</span>
-<span id="cb27-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ncbiRefSeq&amp;Ensembl&amp;refGene&quot;</span> <span class="ot">=</span> <span class="dv">10388</span>))</span>
-<span id="cb27-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(venn_intersect,</span>
-<span id="cb27-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">quantities =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;percent&quot;</span>, <span class="st">&quot;counts&quot;</span>),</span>
-<span id="cb27-11"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span>  <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>),</span>
-<span id="cb27-12"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize =</span> <span class="dv">15</span>),</span>
-<span id="cb27-13"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>),</span>
-<span id="cb27-14"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize =</span> <span class="dv">20</span>),</span>
-<span id="cb27-15"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lex =</span> <span class="dv">2</span>),</span>
-<span id="cb27-16"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fills =</span> <span class="fu">c</span>(<span class="st">&quot;limegreen&quot;</span>, <span class="st">&quot;darkgoldenrod1&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>),</span>
-<span id="cb27-17"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">side =</span> <span class="st">&quot;right&quot;</span>))</span></code></pre></div>
-<p><img src="scAnnotatiONT-paper_files/figure-html/venn-ref-transcript-1.png" width="960" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(venn_intersect,</span>
-<span id="cb28-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">quantities =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;percent&quot;</span>, <span class="st">&quot;counts&quot;</span>),</span>
-<span id="cb28-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span>  <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb28-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize =</span> <span class="dv">15</span>),</span>
-<span id="cb28-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb28-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">fontsize =</span> <span class="dv">20</span>),</span>
-<span id="cb28-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lex =</span> <span class="dv">2</span>),</span>
-<span id="cb28-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">side =</span> <span class="st">&quot;right&quot;</span>))</span></code></pre></div>
-<p><img src="scAnnotatiONT-paper_files/figure-html/venn-ref-transcript-2.png" width="960" style="display: block; margin: auto;" /></p>
+<span id="cb24-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">intervene</span> venn <span class="at">-i</span> <span class="va">$genesGff1</span> <span class="va">$genesGff2</span> <span class="va">$genesGff3</span> <span class="dt">\</span></span>
+<span id="cb24-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-4" aria-hidden="true" tabindex="-1"></a>--figtype png <span class="dt">\</span></span>
+<span id="cb24-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-5" aria-hidden="true" tabindex="-1"></a>--save-overlaps <span class="dt">\</span></span>
+<span id="cb24-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-6" aria-hidden="true" tabindex="-1"></a>--bedtools-options f=0.5,r,s <span class="dt">\</span></span>
+<span id="cb24-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb24-7" aria-hidden="true" tabindex="-1"></a>--output <span class="va">${pathOutput}</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-1" aria-hidden="true" tabindex="-1"></a>venn_intersect <span class="ot">&lt;-</span> <span class="fu">euler</span>(<span class="fu">c</span>(<span class="st">&quot;UCSC&quot;</span> <span class="ot">=</span> <span class="dv">248</span>,</span>
+<span id="cb25-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-2" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;NCBI&quot;</span> <span class="ot">=</span> <span class="dv">8555</span>,</span>
+<span id="cb25-3"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Ensembl&quot;</span> <span class="ot">=</span> <span class="dv">9004</span>,</span>
+<span id="cb25-4"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;NCBI&amp;Ensembl&quot;</span> <span class="ot">=</span> <span class="dv">8927</span>,</span>
+<span id="cb25-5"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;NCBI&amp;UCSC&quot;</span> <span class="ot">=</span> <span class="dv">253</span>,</span>
+<span id="cb25-6"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;Ensembl&amp;UCSC&quot;</span> <span class="ot">=</span> <span class="dv">376</span>,</span>
+<span id="cb25-7"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;NCBI&amp;Ensembl&amp;UCSC&quot;</span> <span class="ot">=</span> <span class="dv">6049</span>))</span>
+<span id="cb25-8"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(venn_intersect,</span>
+<span id="cb25-10"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">quantities =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;counts&quot;</span>),</span>
+<span id="cb25-11"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col =</span>  <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb25-12"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">fontsize =</span> <span class="dv">20</span>),</span>
+<span id="cb25-13"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb25-14"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fontsize =</span> <span class="dv">22</span>),</span>
+<span id="cb25-15"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">edges =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lex =</span> <span class="dv">2</span>),</span>
+<span id="cb25-16"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">fills =</span> plots_colors[<span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>],</span>
+<span id="cb25-17"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb25-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">side =</span> <span class="st">&quot;right&quot;</span>))</span></code></pre></div>
+<p><img src="scAnnotatiONT-paper_files/figure-html/venn-refs-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
+<div id="gffcompare" class="section level3" number="1.1.8">
+<h3><span class="header-section-number">1.1.8</span> GffCompare</h3>
 </div>
 </div>
 <div id="impact-of-reference-choice-on-scrna-seq-analyses" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Impact of reference choice on scRNA-seq analyses</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb29-1" aria-hidden="true" tabindex="-1"></a>data_seurat <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(counts_wide)</span>
-<span id="cb29-2"><a href="impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html#cb29-2" aria-hidden="true" tabindex="-1"></a>run nextflow quantif </span></code></pre></div>
 
 </div>
 </div>
