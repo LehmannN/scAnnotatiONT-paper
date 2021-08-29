@@ -57,7 +57,9 @@ packagesList <- c("bookdown",
 				  "dplyr",
 				  "eulerr",
 				  "RColorBrewer",
-				  "ggplot2")
+				  "ggplot2",
+				  "gridExtra",
+				  "ggpubr")
 lapply(packagesList, require, character.only = TRUE)
 options(stringsAsFactors = FALSE)
 ```

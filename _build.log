@@ -1,7 +1,7 @@
 
 
 processing file: scAnnotatiONT-paper.Rmd
-  |                                                                              |                                                                      |   0%  |                                                                              |.                                                                     |   2%
+  |                                                                              |                                                                      |   0%  |                                                                              |.                                                                     |   1%
    inline R code fragments
 
   |                                                                              |..                                                                    |   3%
@@ -9,19 +9,19 @@ label: setup-paths (with options)
 List of 1
  $ echo: logi FALSE
 
-  |                                                                              |....                                                                  |   5%
+  |                                                                              |...                                                                   |   4%
   ordinary text without R code
 
-  |                                                                              |.....                                                                 |   7%
+  |                                                                              |....                                                                  |   5%
 label: setup-chunks (with options) 
 List of 2
  $ echo   : logi FALSE
  $ message: logi FALSE
 
-  |                                                                              |......                                                                |   8%
+  |                                                                              |.....                                                                 |   7%
   ordinary text without R code
 
-  |                                                                              |.......                                                               |  10%
+  |                                                                              |......                                                                |   8%
 label: def-libraries (with options) 
 List of 2
  $ echo : logi FALSE
@@ -43,35 +43,44 @@ The following objects are masked from 'package:base':
 Loading required package: eulerr
 Loading required package: RColorBrewer
 Loading required package: ggplot2
-  |                                                                              |........                                                              |  12%
+Loading required package: gridExtra
+
+Attaching package: 'gridExtra'
+
+The following object is masked from 'package:dplyr':
+
+    combine
+
+Loading required package: ggpubr
+  |                                                                              |.......                                                               |  10%
   ordinary text without R code
 
-  |                                                                              |.........                                                             |  14%
+  |                                                                              |........                                                              |  11%
 label: setup-knitr (with options) 
 List of 1
  $ include: logi FALSE
 
-  |                                                                              |...........                                                           |  15%
+  |                                                                              |.........                                                             |  12%
   ordinary text without R code
 
-  |                                                                              |............                                                          |  17%
+  |                                                                              |..........                                                            |  14%
 label: ggplot-theme (with options) 
 List of 1
  $ echo: logi FALSE
 
-  |                                                                              |.............                                                         |  19%
+  |                                                                              |...........                                                           |  15%
   ordinary text without R code
 
-  |                                                                              |..............                                                        |  20%
+  |                                                                              |............                                                          |  16%
 label: unnamed-chunk-1 (with options) 
 List of 2
  $ eval  : logi TRUE
  $ engine: chr "bash"
 
-  |                                                                              |...............                                                       |  22%
+  |                                                                              |............                                                          |  18%
   ordinary text without R code
 
-  |                                                                              |.................                                                     |  24%
+  |                                                                              |.............                                                         |  19%
 label: unnamed-chunk-2 (with options) 
 List of 4
  $ eval   : logi FALSE
@@ -79,157 +88,195 @@ List of 4
  $ warning: logi FALSE
  $ engine : chr "bash"
 
-  |                                                                              |..................                                                    |  25%
+  |                                                                              |..............                                                        |  21%
   ordinary text without R code
 
-  |                                                                              |...................                                                   |  27%
+  |                                                                              |...............                                                       |  22%
 label: unnamed-chunk-3 (with options) 
 List of 3
  $ eval  : logi TRUE
  $ echo  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |....................                                                  |  29%
+  |                                                                              |................                                                      |  23%
   ordinary text without R code
 
-  |                                                                              |.....................                                                 |  31%
+  |                                                                              |.................                                                     |  25%
 label: unnamed-chunk-4 (with options) 
 List of 2
  $ eval  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |.......................                                               |  32%
+  |                                                                              |..................                                                    |  26%
   ordinary text without R code
 
-  |                                                                              |........................                                              |  34%
+  |                                                                              |...................                                                   |  27%
 label: unnamed-chunk-5 (with options) 
 List of 3
  $ eval  : logi FALSE
  $ echo  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |.........................                                             |  36%
+  |                                                                              |....................                                                  |  29%
   ordinary text without R code
 
-  |                                                                              |..........................                                            |  37%
+  |                                                                              |.....................                                                 |  30%
 label: unnamed-chunk-6 (with options) 
 List of 2
  $ eval  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |...........................                                           |  39%
+  |                                                                              |......................                                                |  32%
   ordinary text without R code
 
-  |                                                                              |............................                                          |  41%
+  |                                                                              |.......................                                               |  33%
 label: mikado-stats
-  |                                                                              |..............................                                        |  42%
+  |                                                                              |........................                                              |  34%
   ordinary text without R code
 
-  |                                                                              |...............................                                       |  44%
+  |                                                                              |.........................                                             |  36%
 label: unnamed-chunk-7 (with options) 
 List of 2
  $ eval  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |................................                                      |  46%
+  |                                                                              |..........................                                            |  37%
+  ordinary text without R code
+
+  |                                                                              |...........................                                           |  38%
+label: mikado-general-stats
+  |                                                                              |............................                                          |  40%
+  ordinary text without R code
+
+  |                                                                              |.............................                                         |  41%
+label: gene-length
+  |                                                                              |..............................                                        |  42%
+  ordinary text without R code
+
+  |                                                                              |...............................                                       |  44%
+label: unnamed-chunk-8
+  |                                                                              |................................                                      |  45%
   ordinary text without R code
 
   |                                                                              |.................................                                     |  47%
-label: mikado-general-stats
-  |                                                                              |..................................                                    |  49%
+label: gene-length-boxplot
+  |                                                                              |..................................                                    |  48%
   ordinary text without R code
 
-  |                                                                              |....................................                                  |  51%
-label: gene-length
+  |                                                                              |...................................                                   |  49%
+label: gene-length-significance
+  |                                                                              |...................................                                   |  51%
+  ordinary text without R code
+
+  |                                                                              |....................................                                  |  52%
+label: gene-length-boxplot-advanced
   |                                                                              |.....................................                                 |  53%
   ordinary text without R code
 
-  |                                                                              |......................................                                |  54%
-label: unnamed-chunk-8
+  |                                                                              |......................................                                |  55%
+label: gene-length-density
   |                                                                              |.......................................                               |  56%
   ordinary text without R code
 
   |                                                                              |........................................                              |  58%
-label: gene-length-boxplot
-  |                                                                              |..........................................                            |  59%
-  ordinary text without R code
-
-  |                                                                              |...........................................                           |  61%
-label: gene-length-density
-  |                                                                              |............................................                          |  63%
-  ordinary text without R code
-
-  |                                                                              |.............................................                         |  64%
 label: gene-length-histogram
-  |                                                                              |..............................................                        |  66%
+  |                                                                              |.........................................                             |  59%
   ordinary text without R code
 
-  |                                                                              |...............................................                       |  68%
+  |                                                                              |..........................................                            |  60%
 label: utr-length
-  |                                                                              |.................................................                     |  69%
+  |                                                                              |...........................................                           |  62%
+  ordinary text without R code
+
+  |                                                                              |............................................                          |  63%
+label: utr-length-boxplot
+  |                                                                              |.............................................                         |  64%
+  ordinary text without R code
+
+  |                                                                              |..............................................                        |  66%
+label: utr-length-significance
+  |                                                                              |...............................................                       |  67%
+  ordinary text without R code
+
+  |                                                                              |................................................                      |  68%
+label: utr-length-boxplot-advanced
+  |                                                                              |.................................................                     |  70%
   ordinary text without R code
 
   |                                                                              |..................................................                    |  71%
-label: utr-length-boxplot
+label: utr-length-density
   |                                                                              |...................................................                   |  73%
   ordinary text without R code
 
-  |                                                                              |....................................................                  |  75%
-label: utr-length-density
-  |                                                                              |.....................................................                 |  76%
-  ordinary text without R code
-
-  |                                                                              |.......................................................               |  78%
+  |                                                                              |....................................................                  |  74%
 label: utr-length-histogram
-  |                                                                              |........................................................              |  80%
+  |                                                                              |.....................................................                 |  75%
   ordinary text without R code
 
-  |                                                                              |.........................................................             |  81%
+  |                                                                              |......................................................                |  77%
 label: unnamed-chunk-9 (with options) 
 List of 3
  $ eval  : logi FALSE
  $ echo  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |..........................................................            |  83%
+  |                                                                              |.......................................................               |  78%
   ordinary text without R code
 
-  |                                                                              |...........................................................           |  85%
+  |                                                                              |........................................................              |  79%
 label: unnamed-chunk-10 (with options) 
 List of 3
  $ eval  : logi FALSE
  $ echo  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |.............................................................         |  86%
+  |                                                                              |.........................................................             |  81%
   ordinary text without R code
 
-  |                                                                              |..............................................................        |  88%
+  |                                                                              |..........................................................            |  82%
 label: unnamed-chunk-11 (with options) 
 List of 2
  $ eval  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |...............................................................       |  90%
+  |                                                                              |..........................................................            |  84%
   ordinary text without R code
 
-  |                                                                              |................................................................      |  92%
+  |                                                                              |...........................................................           |  85%
 label: venn-refs (with options) 
 List of 1
  $ eval: logi TRUE
 
-  |                                                                              |.................................................................     |  93%
+  |                                                                              |............................................................          |  86%
   ordinary text without R code
 
-  |                                                                              |..................................................................    |  95%
+  |                                                                              |.............................................................         |  88%
+label: gffcompare-load
+  |                                                                              |..............................................................        |  89%
+  ordinary text without R code
+
+  |                                                                              |...............................................................       |  90%
+label: gffcompare
+  |                                                                              |................................................................      |  92%
+  ordinary text without R code
+
+  |                                                                              |.................................................................     |  93%
 label: unnamed-chunk-12 (with options) 
+List of 1
+ $ eval: logi FALSE
+
+  |                                                                              |..................................................................    |  95%
+  ordinary text without R code
+
+  |                                                                              |...................................................................   |  96%
+label: unnamed-chunk-13 (with options) 
 List of 1
  $ eval: logi FALSE
 
   |                                                                              |....................................................................  |  97%
   ordinary text without R code
 
-  |                                                                              |..................................................................... |  98%
+  |                                                                              |..................................................................... |  99%
 label: session-info
   |                                                                              |......................................................................| 100%
   ordinary text without R code
@@ -237,7 +284,7 @@ label: session-info
 
 output file: scAnnotatiONT-paper.knit.md
 
-/workspaces/csb/lehmann/conda/envs/scRNA/bin/pandoc +RTS -K512m -RTS scAnnotatiONT-paper.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output scAnnotatiONT-paper.html --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/rmarkdown/rmarkdown/lua/latex-div.lua --metadata-file /tmp/Rtmpui1gLX/filec406e5e2aaffe --wrap preserve --standalone --section-divs --table-of-contents --toc-depth 3 --template /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/bookdown/templates/gitbook.html --highlight-style pygments --number-sections --include-in-header /tmp/Rtmpui1gLX/rmarkdown-strc406e295d8107.html --mathjax --citeproc 
+/workspaces/csb/lehmann/conda/envs/scRNA/bin/pandoc +RTS -K512m -RTS scAnnotatiONT-paper.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output scAnnotatiONT-paper.html --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/rmarkdown/rmarkdown/lua/latex-div.lua --metadata-file /tmp/RtmpllkeJ2/filed9fb76c6edc24 --wrap preserve --standalone --section-divs --table-of-contents --toc-depth 3 --template /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/bookdown/templates/gitbook.html --highlight-style pygments --number-sections --include-in-header /tmp/RtmpllkeJ2/rmarkdown-strd9fb76e82ccd2.html --mathjax --citeproc 
 
 Output created: docs/impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html
 [1] "/import/kg_csbws01/lehmann/annotation/scAnnotatiONT-paper/docs/impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"

@@ -127,7 +127,7 @@ gff3_files <- c(paste0('data/raw/references/annotations/ucsc/galGal6.', file_nam
 gff3_list <- list()
 gff3_list <- lapply(gff3_files, rtracklayer::import)
 gff3_list <- lapply(gff3_list, as.data.frame)
-genes <- lapply(gff3_list, function(x) filter(x, type == "gene"))
+genes <- lapply(gff3_list, function(x) dplyr::filter(x, type == "gene"))
 genes_width <- list(Ensembl = genes[[1]]['width'],
 					NCBI = genes[[2]]['width'],
 					UCSC = genes[[3]]['width'])
@@ -155,6 +155,26 @@ plot1 <- ggplot(genes_width_df, aes(x = annotation, y = log10(width))) +
 	theme_minimal()
 plot1
 ```
+
+```{r gene-length-significance}
+comp_genes_len <- compare_means(data = genes_width_df,
+								formula = width ~ annotation,
+								method = "wilcox.test", paired = FALSE)
+show_df(as.data.frame(comp_genes_len))
+```
+
+```{r gene-length-boxplot-advanced}
+to_compare <- list(c('Ensembl', 'NCBI'), c('NCBI', 'UCSC'), c('Ensembl', 'UCSC'))
+plot1 <- ggplot(genes_width_df, aes(x = annotation, y = log10(width))) +
+	geom_violin(trim = TRUE, fill = 'lightgray', color = "lightgray") +
+	geom_boxplot(width = 0.4, fill = plots_colors[1:3]) +
+	stat_compare_means(comparisons = to_compare) +
+	stat_compare_means(label.y = 11) +
+	labs(x = "", y = "", title = paste0("Genes lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
 
 ```{r gene-length-density}
 # Density plot
@@ -203,6 +223,24 @@ utr_width_df <- rbind(width1, width2, width3)
 
 plot1 <- ggplot(utr_width_df, aes(x = annotation, y = log10(width))) +
 	geom_boxplot(width = 0.5, fill = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r utr-length-significance}
+comp_utr_len <- compare_means(data = utr_width_df,
+								formula = width ~ annotation,
+								method = "wilcox.test", paired = FALSE)
+show_df(as.data.frame(comp_utr_len))
+```
+
+```{r utr-length-boxplot-advanced}
+plot1 <- ggplot(utr_width_df, aes(x = annotation, y = log10(width))) +
+	geom_violin(trim = TRUE, fill = 'lightgray', color = "lightgray") +
+	geom_boxplot(width = 0.3, fill = plots_colors[1:3]) +
+	stat_compare_means(comparisons = to_compare) +
+	stat_compare_means(label.y = 6.5) +
 	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
 	theme_minimal()
 plot1
@@ -281,6 +319,78 @@ plot(venn_intersect,
 ```
 
 ### GffCompare
+
+```{r gffcompare-load}
+gffcmp_files <- c(paste0('output/01-Impact-ref-annotation-scRNA/gffcompare/gffcmp_ensGene_', file_names[2:3],'.stats.txt'))
+gffcmp_stats <- lapply(gffcmp_files, read.csv,
+					header = FALSE,
+					skip = 1,
+					sep = '\t',
+					quote = "")
+gffcmp_stats[[1]]['Ref'] <- 'NCBI'
+gffcmp_stats[[2]]['Ref'] <- 'UCSC'
+gffcmp_df <- as.data.frame(do.call(rbind, gffcmp_stats))
+show_df(gffcmp_df)
+```
+
+```{r gffcompare}
+plots <- list()
+plots[[1]] <- gffcmp_df %>%
+	filter(V1 %in% c("Locus level")) %>%
+	ggplot(aes(x = Ref, y = V2, fill = Ref)) +
+	geom_bar(stat="identity") +
+	scale_fill_manual(values = plots_colors[2:3]) +
+	labs(x = "", y = "Percentage", title = "Sensitivity") +
+	ylim(c(0, 100)) +
+	guides(fill = FALSE) +
+	theme_minimal()
+
+plots[[2]] <- gffcmp_df %>%
+	filter(V1 %in% c("Locus level")) %>%
+	ggplot(aes(x = Ref, y = V3, fill = Ref)) +
+	geom_bar(stat="identity") +
+	scale_fill_manual(values = plots_colors[2:3]) +
+	labs(x = "", y = "Percentage", title = "Precision") +
+	ylim(c(0, 100)) +
+	guides(fill = FALSE) +
+	theme_minimal()
+
+plots[[3]] <- gffcmp_df %>%
+	filter(V1 %in% c("Missed loci")) %>%
+	ggplot(aes(x = Ref, y = V4, fill = Ref)) +
+	geom_bar(stat="identity") +
+	scale_fill_manual(values = plots_colors[2:3]) +
+	labs(x = "", y = "Percentage", title = "Missed loci") +
+	ylim(c(0, 100)) +
+	guides(fill = FALSE) +
+	theme_minimal()
+
+plots[[4]] <- gffcmp_df %>%
+	filter(V1 %in% c("Novel loci")) %>%
+	ggplot(aes(x = Ref, y = V4, fill = Ref)) +
+	geom_bar(stat="identity") +
+	scale_fill_manual(values = plots_colors[2:3]) +
+	labs(x = "", y = "Percentage", title = "Novel loci") +
+	ylim(c(0, 100)) +
+	guides(fill = FALSE) +
+	theme_minimal()
+
+do.call(grid.arrange, plots)
+```
+
+```{r, eval=FALSE}
+lapply(genes, head)
+lapply(genes, nrow)
+
+# Prepare data for plotting
+names1 <- data.frame(annotation = "Ensembl", value = genes[[1]]['Name'])
+names2 <- data.frame(annotation = "NCBI", value = genes[[2]]['Name'])
+names3 <- data.frame(annotation = "UCSC", value = genes[[3]]['Name'])
+utr_width_df <- rbind(width1, width2, width3)
+
+
+```
+
 
 ## Impact of reference choice on scRNA-seq analyses
 
