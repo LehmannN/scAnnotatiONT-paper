@@ -1,0 +1,1017 @@
+---
+title: "scAnnotatiONT paper companion"
+author: "Nathalie Lehmann"
+date: "`r Sys.Date()`"
+output: bookdown::gitbook
+documentclass: book
+bibliography: []
+biblio-style: apalike
+link-citations: yes
+github-repo: "https://github.com/LehmannN/scAnnotatiONT"
+---
+
+
+```{r setup-paths, echo=FALSE}
+path_main <- './'
+path_data <- paste0(path_main, 'data/')
+path_output <- paste0(path_main, 'output/')
+path_scripts <- paste0(path_main,'scripts/')
+```
+
+```{r setup-chunks, echo=FALSE, message=FALSE}
+library(knitr)
+
+# Change cache to TRUE if you need to re-run the analysis with small changes
+# Careful: Bookdown doesn’t support proper cache invalidation based on external file changes
+opts_chunk$set(fig.align = "center",
+			   fig.retina = 2,
+			   fig.width = 10,
+			   dev = c('png', 'pdf'),
+			   cache = FALSE,
+			   cache.lazy = FALSE,
+			   warning = FALSE,
+			   message = FALSE)
+```
+
+```{r def-libraries, echo=FALSE, cache=FALSE}
+packagesList <- c("bookdown",
+				  "dplyr",
+				  "eulerr",
+				  "RColorBrewer",
+				  "wesanderson",
+				  "ggplot2",
+				  "gridExtra",
+				  "ggpubr",
+				  "Seurat",
+				  "gridExtra",
+				  "cowplot",
+				  "scales",
+				  "ggthemes",
+				  "ggrepel")
+lapply(packagesList, require, character.only = TRUE)
+options(stringsAsFactors = FALSE)
+```
+
+```{r setup-knitr, include=FALSE}
+# Automatically creates a bib database for R packages
+knitr::write_bib(c(
+				 .packages(), packagesList),
+				 'env/packages.bib')
+# Adds an option to show / hide the code dynamically in the report
+#knitr::read_chunk('src/R/rmd_code_folding.R')
+```
+
+```{r ggplot-theme, echo=FALSE}
+#Set ggplot theme
+#theme_set(theme_classic())
+```
+
+
+<!--chapter:end:00-Index.Rmd-->
+
+# Impact of discrepant reference annotations on scRNA-seq analyses
+
+In this section, we will have a look at the differences between the three references genome annotation: Ensembl, NCBI (RefSeq) and UCSC.
+
+## Discrepancies in reference annotations
+
+### Define paths and get reference annotations
+
+These are just sanity steps to define the inputs and outputs of the workflow.
+
+```{bash, eval=TRUE}
+echo "export pathRef='data/raw/references/annotations/ucsc/'" >> .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/'" >> .rvars
+```
+
+```{bash, eval=FALSE, message=FALSE, warning=FALSE}
+source .rvars
+mkdir -p $pathRef
+mkdir -p $pathOutput
+
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ensGene.gtf.gz \
+-P $pathRef
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.ncbiRefSeq.gtf.gz \
+-P $pathRef
+wget https://hgdownload.soe.ucsc.edu/goldenPath/galGal6/bigZips/genes/galGal6.refGene.gtf.gz \
+-P $pathRef
+gunzip ${pathRef}*.gtf.gz
+```
+
+```{bash, eval=TRUE, echo=FALSE}
+source .rvars
+echo "export ref1='${pathRef}galGal6.ensGene.gtf'" >> .rvars
+echo "export ref2='${pathRef}galGal6.ncbiRefSeq.gtf'" >> .rvars
+echo "export ref3='${pathRef}galGal6.refGene.gtf'" >> .rvars
+```
+
+### Basic stats on GTF files
+
+We here show some basic statistics out of the genome annotation file.
+For this purpose, we use [mikado util stats](https://mikado.readthedocs.io/en/stable/Usage/Utilities/#stats).
+However, while running it on UCSC reference, we encounter some errors in the original file.
+We will start by fixing the file.
+
+#### Fix GTF RefGene file
+
+When running `mikado`, we found out that some exons overlap.
+This causes `mikado` to throw an error such as "start must be less than end", and it stops running.
+We use `gffread -T` to fix this issue.
+
+```{bash, eval=FALSE}
+source .rvars
+gffread -T $ref3 > ${ref3%.*}_fixed.gtf
+```
+
+```{bash, eval=FALSE, echo=FALSE}
+sed -i '/ref3/c\' .rvars
+echo "export ref3='${ref3%.*}_fixed.gtf'" >> .rvars
+source .rvars
+echo $ref3
+```
+
+### Run nextflow pipeline
+
+We designed a scAnnotatiONT pipeline in order to process single-cell RNA-seq from poorly-annotated genomes.
+This pipeline contains also an option to process reference annotations.
+It outputs i) basic statistics on any GTF file, ii) single-cell RNA-seq analyses of our test dataset.
+
+```{bash, eval=FALSE}
+# Pipeline available here (see "paper" branch) : https://github.com/LehmannN/scAnnotatiONT
+bash _run_nextflow_references.sh
+```
+
+### Mikado
+
+```{r mikado-stats}
+file_names <- c('ensGene', 'ncbiRefSeq', 'refGene')
+ref_names <- c('Ensembl', 'NCBI', 'UCSC')
+mikado_files <- c(paste0('output/01-Impact-ref-annotation-scRNA/mikado_stats/galGal6.', file_names,'_stats.tsv'))
+gtf_stats <- list()
+gtf_stats <- lapply(mikado_files, read.csv,
+					header = TRUE,
+					sep = '\t',
+					row.names = 1,
+					quote = "")
+
+show_df <- function(x) {
+	DT::datatable(x,
+				  extensions = c('Buttons', 'Scroller'),
+				  options = list(
+								 dom = 'Bfrtip',
+								 buttons = c('csv', 'pdf'),
+								 deferRender = TRUE,
+								 scrollY = 200,
+								 scrollX = TRUE,
+								 scroller = TRUE))}
+
+# Ensembl
+show_df(gtf_stats[[1]])
+# NCBI
+show_df(gtf_stats[[2]])
+# UCSC
+show_df(gtf_stats[[3]])
+```
+
+
+We also use `asm_collect.py`, which is a script to collect info from multiple mikado util stats files.
+See https://mikado.readthedocs.io/en/stable/Usage/Utilities/#stats for more details.
+
+```{bash, eval=FALSE}
+asm_collect.py ${pathOutput}*_stats.tsv > ${pathOutput}main_stats.tsv
+```
+
+```{r mikado-general-stats}
+main_stats <- read.csv("output/01-Impact-ref-annotation-scRNA/mikado_stats/main_stats.tsv",
+					   header = TRUE,
+					   sep = '\t',
+					   row.names = 1,
+					   quote = "")
+
+show_df(main_stats)
+```
+
+### Gene lengths
+
+```{r extract-gff3}
+# show how we created gff3 and why
+```
+
+
+We extract *genes* features from the GFF3 file (see workflow for more details: GTF files do not include the *genes* features).
+This allow us to get gene lengths distribution for each annotation.
+
+
+```{r gene-length}
+gff3_files <- c(paste0('data/raw/references/annotations/ucsc/galGal6.', file_names,'.gff3'))
+gff3_list <- list()
+gff3_list <- lapply(gff3_files, rtracklayer::import)
+gff3_list <- lapply(gff3_list, as.data.frame)
+genes <- lapply(gff3_list, function(x) dplyr::filter(x, type == "gene"))
+genes_width <- list(Ensembl = genes[[1]]['width'],
+					NCBI = genes[[2]]['width'],
+					UCSC = genes[[3]]['width'])
+summ <- lapply(genes_width, summary)
+
+# Ensembl
+knitr::kable(summ[[1]])
+# NCBI
+knitr::kable(summ[[2]])
+# UCSC
+knitr::kable(summ[[3]])
+```
+
+```{r}
+# Define colors
+plots_colors <- brewer.pal(8, "Set2")
+# Prepare data for plotting
+width1 <- data.frame(annotation = "Ensembl", value = genes[[1]]['width'])
+width2 <- data.frame(annotation = "NCBI", value = genes[[2]]['width'])
+width3 <- data.frame(annotation = "UCSC", value = genes[[3]]['width'])
+genes_width_df <- rbind(width1, width2, width3)
+```
+
+```{r gene-length-boxplot}
+# Boxplot
+plot1 <- ggplot(genes_width_df, aes(x = annotation, y = log10(width))) +
+	geom_boxplot(width = 0.5, fill = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("Genes lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r gene-length-significance}
+comp_genes_len <- compare_means(data = genes_width_df,
+								formula = width ~ annotation,
+								method = "wilcox.test", paired = FALSE)
+show_df(as.data.frame(comp_genes_len))
+```
+
+Comparison of mean gene lengths.
+```{r gene-length-boxplot-advanced}
+to_compare <- list(c('Ensembl', 'NCBI'), c('NCBI', 'UCSC'), c('Ensembl', 'UCSC'))
+plot1 <- ggplot(genes_width_df, aes(x = annotation, y = log10(width))) +
+	geom_violin(trim = TRUE, fill = 'lightgray', color = "lightgray") +
+	geom_boxplot(width = 0.4, fill = plots_colors[1:3]) +
+	stat_compare_means(comparisons = to_compare) +
+	stat_compare_means(label.y = 11) +
+	labs(x = "", y = "", title = paste0("Genes lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+
+```{r gene-length-density}
+# Density plot
+plot1 <- ggplot(genes_width_df, aes(x = log10(width), color = annotation)) +
+	geom_density() +
+	scale_color_manual(values = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("Genes lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r gene-length-histogram}
+# Histogram
+plot1 <- ggplot(genes_width_df, aes(x = log10(width), fill = annotation)) +
+	geom_histogram(bins = 30, color = "#e9ecef", alpha = 0.5, position = 'identity') +
+	scale_fill_manual(values = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("Genes lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+
+### 3'UTR lengths
+
+```{r utr-length}
+gtf_files <- c(paste0('data/raw/references/annotations/ucsc/galGal6.', file_names,'.gtf'))
+gtf_list <- list()
+gtf_list <- lapply(gtf_files, rtracklayer::import)
+gtf_list <- lapply(gtf_list, as.data.frame)
+utr <- lapply(gtf_list, function(x) filter(x, type == "3UTR"))
+utr_width <- list(Ensembl = utr[[1]]['width'],
+				  NCBI = utr[[2]]['width'],
+				  UCSC = utr[[3]]['width'])
+summ <- lapply(utr_width, summary)
+# Ensembl
+knitr::kable(summ[[1]])
+# NCBI
+knitr::kable(summ[[2]])
+# UCSC
+knitr::kable(summ[[3]])
+```
+
+```{r utr-length-boxplot}
+# Prepare data for plotting
+width1 <- data.frame(annotation = "Ensembl", value = utr[[1]]['width'])
+width2 <- data.frame(annotation = "NCBI", value = utr[[2]]['width'])
+width3 <- data.frame(annotation = "UCSC", value = utr[[3]]['width'])
+utr_width_df <- rbind(width1, width2, width3)
+
+plot1 <- ggplot(utr_width_df, aes(x = annotation, y = log10(width))) +
+	geom_boxplot(width = 0.5, fill = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r utr-length-significance}
+comp_utr_len <- compare_means(data = utr_width_df,
+							  formula = width ~ annotation,
+							  method = "wilcox.test", paired = FALSE)
+show_df(as.data.frame(comp_utr_len))
+```
+
+```{r utr-length-boxplot-advanced}
+plot1 <- ggplot(utr_width_df, aes(x = annotation, y = log10(width))) +
+	geom_violin(trim = TRUE, fill = 'lightgray', color = "lightgray") +
+	geom_boxplot(width = 0.3, fill = plots_colors[1:3]) +
+	stat_compare_means(comparisons = to_compare) +
+	stat_compare_means(label.y = 6.5) +
+	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r utr-length-density}
+# Density plot
+plot1 <- ggplot(utr_width_df, aes(x = log10(width), color = annotation)) +
+	geom_density() +
+	scale_color_manual(values = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+```{r utr-length-histogram}
+# Histogram
+plot1 <- ggplot(utr_width_df, aes(x = log10(width), fill = annotation)) +
+	geom_histogram(bins = 30, color = "#e9ecef", alpha = 0.5, position = 'identity') +
+	scale_fill_manual(values = plots_colors[1:3]) +
+	labs(x = "", y = "", title = paste0("3'UTR lengths (log10) of the 3 reference annotations")) +
+	theme_minimal()
+plot1
+```
+
+### Venn Diagrams
+Intersections counts are produced via [Intervene](https://intervene.readthedocs.io/en/latest/index.html).
+This tool is based on `bedtools interset`.
+We defined intersections if at least 50% of the gene from reference A overlaps a gene in reference B, and vice versa.
+We also consider separately the forward and reverse strand.
+The resulting euler diagram (or proportional Venn diagram) is obtained with the package `eulerr`.
+
+```{bash, eval=FALSE, echo=FALSE}
+source .rvars
+sed -i '/pathOutput/c\' .rvars
+echo "export pathOutput='output/01-Impact-ref-annotation-scRNA/venn_diagrams/'" >> .vars
+source .rvars
+mkdir -p $pathOutput
+```
+
+I retained the number of interested genes obtained with Intervene to plot the Venn diagram with `eulerr`.
+
+```{bash, eval=FALSE, echo=FALSE}
+source .rvars
+echo "export genesGff1='${pathRef}galGal6.ensGene_genes.gff3'" >> .rvars
+echo "export genesGff2='${pathRef}galGal6.ncbiRefSeq_genes.gff3'" >> .rvars
+echo "export genesGff3='${pathRef}galGal6.refGene_fixed_genes.gff3'" >> .rvars
+```
+
+```{bash, eval=FALSE}
+source .rvars
+
+intervene venn -i $genesGff1 $genesGff2 $genesGff3 \
+--figtype png \
+--save-overlaps \
+--bedtools-options f=0.5,r,s \
+--output ${pathOutput}
+```
+
+```{r venn-refs, eval=TRUE}
+venn_intersect <- euler(c("UCSC" = 248,
+						  "NCBI" = 8555,
+						  "Ensembl" = 9004,
+						  "NCBI&Ensembl" = 8927,
+						  "NCBI&UCSC" = 253,
+						  "Ensembl&UCSC" = 376,
+						  "NCBI&Ensembl&UCSC" = 6049))
+
+plot(venn_intersect,
+	 quantities = list(type = c("counts"),
+					   col =  c("black", "black", "black"),
+					   fontsize = 20),
+	 labels = list(col = c("black", "black", "black"),
+				   fontsize = 22),
+	 edges = list(col = "white", lex = 2),
+	 fills = plots_colors[3:1],
+	 legend = list(side = "right"))
+```
+
+### GffCompare
+
+```{r gffcompare-load}
+gffcmp_files <- c(paste0('output/01-Impact-ref-annotation-scRNA/gffcompare/gffcmp_ensGene_', file_names[2:3],'.stats.txt'))
+gffcmp_stats <- lapply(gffcmp_files, read.csv,
+					   header = FALSE,
+					   skip = 1,
+					   sep = '\t',
+					   quote = "")
+gffcmp_stats[[1]]['Ref'] <- 'NCBI'
+gffcmp_stats[[2]]['Ref'] <- 'UCSC'
+gffcmp_df <- as.data.frame(do.call(rbind, gffcmp_stats))
+show_df(gffcmp_df)
+```
+
+```{r gffcompare}
+plots <- list()
+plots[[1]] <- gffcmp_df %>%
+	filter(V1 %in% c("Locus level")) %>%
+	ggplot(aes(x = Ref, y = V2, fill = Ref)) +
+	geom_bar(stat="identity") +
+	scale_fill_manual(values = plots_colors[2:3]) +
+	labs(x = "", y = "Percentage", title = "Sensitivity") +
+	ylim(c(0, 100)) +
+	guides(fill = FALSE) +
+	theme_minimal()
+
+plots[[2]] <- gffcmp_df %>%
+	filter(V1 %in% c("Locus level")) %>%
+	ggplot(aes(x = Ref, y = V3, fill = Ref)) +
+	geom_bar(stat="identity") +
+	scale_fill_manual(values = plots_colors[2:3]) +
+	labs(x = "", y = "Percentage", title = "Precision") +
+	ylim(c(0, 100)) +
+	guides(fill = FALSE) +
+	theme_minimal()
+
+plots[[3]] <- gffcmp_df %>%
+	filter(V1 %in% c("Missed loci")) %>%
+	ggplot(aes(x = Ref, y = V4, fill = Ref)) +
+	geom_bar(stat="identity") +
+	scale_fill_manual(values = plots_colors[2:3]) +
+	labs(x = "", y = "Percentage", title = "Missed loci") +
+	ylim(c(0, 100)) +
+	guides(fill = FALSE) +
+	theme_minimal()
+
+plots[[4]] <- gffcmp_df %>%
+	filter(V1 %in% c("Novel loci")) %>%
+	ggplot(aes(x = Ref, y = V4, fill = Ref)) +
+	geom_bar(stat="identity") +
+	scale_fill_manual(values = plots_colors[2:3]) +
+	labs(x = "", y = "Percentage", title = "Novel loci") +
+	ylim(c(0, 100)) +
+	guides(fill = FALSE) +
+	theme_minimal()
+
+do.call(grid.arrange, plots)
+```
+
+
+## Impact of reference choice on scRNA-seq analyses
+
+```{r load-sc-data}
+# ReadRDS
+rds_seurat <- list.files("data/rds/references/", pattern = "*obj_seurat_final.rds", full.names = TRUE)
+rds_seurat <- lapply(rds_seurat, readRDS)
+
+rds_markers <- list.files("data/rds/references/", pattern = "*markers_clustering.rds", full.names = TRUE)
+rds_markers <- lapply(rds_markers, readRDS)
+
+# Reproduce colors palette
+colors_pal1 <- as.vector(yarrr::piratepal("appletv", plot.result = FALSE, trans = 0)[c(3,1,6)])
+colors_pal2 <- as.vector(brewer.pal(n = 4, name = "Dark2"))
+colors_pal3 <- as.vector(brewer.pal(n = 9, name = "Paired"))
+colors_pal4 <- ggthemes_data[["tableau"]][["color-palettes"]][["regular"]][["Classic 20"]]
+colors_pal4 <- as.vector(colors_pal4$value)
+colors_pal <- list(Phase = colors_pal1,
+				   Cell_type = colors_pal2,
+				   Cell_subtype = colors_pal3,
+				   Clusters = colors_pal4)
+names(colors_pal[[1]]) <- c('G1', 'G2M', 'S')
+names(colors_pal[[2]]) <- c('Progenitor', 'Neuron', 'Neural_crest', 'Mesoderm')
+names(colors_pal[[3]]) <- c('RP', 'dp', 'p', 'pMN', 'p3', 'FP', 'Neuron', 'Neural_crest', 'Mesoderm')
+names(colors_pal[[4]]) <- paste0('clust_', 1:20)
+```
+
+### Compare UMAP
+
+These UMAP have been previously computed in the nextflow pipeline.
+We just print them again here.
+
+```{r dim-plots, eval=TRUE}
+run_DimPlot <- function(x, val) {
+	Idents(x) <- val
+	DimPlot(x,
+			reduction = "umap",
+			dims = c(1, 2),
+			label = FALSE,
+			cols = colors_pal$val,
+			label.size = 4,
+			pt.size = 0.2)}
+
+run_DimPlot(rds_seurat[[1]], 'Cell_type')
+run_DimPlot(rds_seurat[[2]], 'Cell_type')
+run_DimPlot(rds_seurat[[3]], 'Cell_type')
+run_DimPlot(rds_seurat[[1]], 'Cell_subtype')
+run_DimPlot(rds_seurat[[2]], 'Cell_subtype')
+run_DimPlot(rds_seurat[[3]], 'Cell_subtype')
+
+#lapply(rds_seurat, run_DimPlot, 'Cell_type')
+#lapply(rds_seurat, run_DimPlot, 'Cell_subtype')
+#lapply(rds_seurat, run_DimPlot, 'Phase')
+#lapply(rds_seurat, run_DimPlot, 'seurat_clusters')
+```
+
+```{r feature-plots, eval=TRUE}
+run_FeaturePlot <- function(x, val) {
+	for (i in seq(1, length(val))) {
+		if (val[i] %in% colnames(x@meta.data)) {
+			print(
+				FeaturePlot(x,
+            		features = val[i],
+            		dims = c(1, 2),
+            		cols = c("grey90", brewer.pal(9,"YlGnBu")),
+            		pt.size = 0.2,
+            		ncol = 1) + NoLegend())}}}
+
+run_FeaturePlot(rds_seurat[[1]], names(colors_pal[[2]]))
+run_FeaturePlot(rds_seurat[[2]], names(colors_pal[[2]]))
+run_FeaturePlot(rds_seurat[[3]], names(colors_pal[[2]]))
+
+run_FeaturePlot(rds_seurat[[1]], names(colors_pal[[3]]))
+run_FeaturePlot(rds_seurat[[2]], names(colors_pal[[3]]))
+run_FeaturePlot(rds_seurat[[3]], names(colors_pal[[3]]))
+
+#lapply(rds_seurat, run_FeaturePlot, names(colors_pal[[2]]))
+#lapply(rds_seurat, run_FeaturePlot, names(colors_pal[[3]]))
+```
+
+
+
+
+### Compare proportions of populations
+
+```{r compare-proportions}
+tmp <- rds_seurat[[3]][[]]
+tmp$p3 <- NA
+md_cells <- rbind(rbind(rds_seurat[[1]][[]], rds_seurat[[2]][[]]), tmp)
+
+ggplot(md_cells, aes(x = orig.ident)) +
+    geom_bar(aes(fill = as.factor(Cell_type)), position = "fill") +
+    theme_minimal() +
+    scale_y_continuous(labels = percent) +
+	scale_fill_manual(values = colors_pal$Cell_type) +
+    labs(x = "", y = "", title = "Proportion of cell types", fill = "Cell type")
+
+ggplot(md_cells, aes(x = orig.ident)) +
+    geom_bar(aes(fill = as.factor(Cell_subtype)), position = "fill") +
+    theme_minimal() +
+    scale_y_continuous(labels = percent) +
+	scale_fill_manual(values = colors_pal$Cell_subtype) +
+    labs(x = "", y = "", title = "Proportion of subtypes", fill = "Cell subtype")
+
+ggplot(md_cells, aes(x = orig.ident)) +
+    geom_bar(aes(fill = as.factor(Phase)), position = "fill") +
+    theme_minimal() +
+    scale_y_continuous(labels = percent) +
+	scale_fill_manual(values = colors_pal$Phase) +
+    labs(x = "", y = "", title = "Proportion of cells in each phase of the cell cycle", fill = "Phase")
+
+ggplot(md_cells, aes(x = orig.ident)) +
+    geom_bar(aes(fill = as.factor(seurat_clusters)), position = "fill") +
+    theme_minimal() +
+    scale_y_continuous(labels = percent) +
+	scale_fill_manual(values = as.vector(colors_pal$Clusters)) +
+    labs(x = "", y = "", title = "Proportion of cells in each cluster", fill = "Cluster")
+```
+
+### Find shared differentially expressed genes
+
+```{r de-genes-prepare}
+# Prepare data to extract DE genes
+create_bulk_df <- function(x) {
+	tmp <- as.data.frame(cbind(x, coln = rowMeans(x)))
+	tmp$gene <- rownames(tmp)
+	tmp <- tmp[, c(ncol(tmp)-1,ncol(tmp))]
+}
+de_genes <- lapply(rds_markers, function(x) {unique(sort(x$gene))} )
+raw_counts <- lapply(rds_seurat, GetAssayData, slot = "counts")
+bulk_counts <- lapply(raw_counts, create_bulk_df)
+colnames(bulk_counts[[1]]) <- c("Ensembl", "gene")
+colnames(bulk_counts[[2]]) <- c("NCBI", "gene")
+colnames(bulk_counts[[3]]) <- c("UCSC", "gene")
+
+# Check number of DE genes with each reference
+lapply(de_genes, length)
+
+# Number of genes (all) in each reference
+lapply(bulk_counts, nrow)
+```
+
+#### Between Ensembl and NCBI
+
+We here compare DE genes.
+
+```{r scater-DE-Ensembl-NCBI}
+i <- 1
+j <- 2
+df_counts <- merge(bulk_counts[[i]][de_genes[[i]],],
+				   bulk_counts[[j]][de_genes[[j]],])
+dim(df_counts)
+
+ref_names <- c('Ensembl', 'NCBI', 'UCSC')
+df_counts$Divergent <- as.factor(ifelse(df_counts[,ref_names[i]] / df_counts[,ref_names[j]] > 5 |
+	df_counts[,ref_names[j]] / df_counts[,ref_names[i]] > 20, 1, 0))
+div <- df_counts[which(df_counts$Divergent == 1),]
+
+ggplot(df_counts, aes(x = log10(Ensembl), y = log10(NCBI))) +
+	geom_point(aes(color = Divergent)) +
+	scale_color_manual(values = c("grey", "red")) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	geom_text_repel(data = div,
+					aes(label = gene),
+					size = 5,
+					box.padding = unit(0.35, "lines"),
+					point.padding = unit(0.3, "lines")) +
+	stat_cor(method = "pearson", label.x = -2.5, size = 5)
+```
+
+We now compare all the genes.
+
+```{r scater-all-Ensembl-NCBI}
+df_counts <- merge(bulk_counts[[i]],
+				   bulk_counts[[j]])
+dim(df_counts)
+
+# Plot the most divergent genes between the 2 references
+df_counts$Divergent <- as.factor(ifelse(df_counts[,ref_names[i]] / df_counts[,ref_names[j]] > 50 |
+	df_counts[,ref_names[j]] / df_counts[,ref_names[i]] > 100, 1, 0))
+div <- df_counts[which(df_counts$Divergent == 1),]
+
+ggplot(df_counts, aes(x = log10(Ensembl), y = log10(NCBI))) +
+	geom_point(aes(color = Divergent)) +
+	scale_color_manual(values = c("grey", "red")) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	geom_text_repel(data = div,
+					aes(label = gene),
+					size = 5,
+					box.padding = unit(0.35, "lines"),
+					point.padding = unit(0.3, "lines")) +
+	stat_cor(method = "pearson", label.x = -2.5, size = 5)
+
+# Plot in color the DE genes that are not shared between the 2 annotations
+tmp <- de_genes[[i]]
+de_excl_Ensembl <- tmp[which(!de_genes[[i]] %in% de_genes[[j]])]
+length(de_excl_Ensembl)
+tmp <- de_genes[[j]]
+de_excl_NCBI <- tmp[which(!de_genes[[j]] %in% de_genes[[i]])]
+length(de_excl_NCBI)
+
+# DF of mutually exclusive genes
+df_counts_i <- df_counts %>%
+	filter(gene %in% de_excl_Ensembl) %>%
+	mutate(Ref = ref_names[i])
+df_counts_j <- df_counts %>%
+	filter(gene %in% de_excl_NCBI) %>%
+	mutate(Ref = ref_names[j])
+df_counts <- rbind(df_counts_i, df_counts_j)
+dim(df_counts)
+
+colors_pal1 <- as.vector(yarrr::piratepal("info", plot.result = FALSE, trans = 0.2)[c(1,2)])
+ggplot(df_counts, aes(x = log10(Ensembl), y = log10(NCBI))) +
+	geom_point(aes(color = Ref)) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	scale_color_manual(values = colors_pal1) +
+	stat_cor(aes(color = Ref), method = "pearson", label.x = -2.5, size = 5)
+```
+
+
+#### Between Ensembl and UCSC
+
+We here compare DE genes.
+
+```{r scater-DE-Ensembl-UCSC}
+i <- 1
+j <- 3
+df_counts <- merge(bulk_counts[[i]][de_genes[[i]],],
+				   bulk_counts[[j]][de_genes[[j]],])
+dim(df_counts)
+
+df_counts$Divergent <- as.factor(ifelse(df_counts[,ref_names[i]] / df_counts[,ref_names[j]] > 5 |
+	df_counts[,ref_names[j]] / df_counts[,ref_names[i]] > 20, 1, 0))
+div <- df_counts[which(df_counts$Divergent == 1),]
+
+ggplot(df_counts, aes(x = log10(Ensembl), y = log10(UCSC))) +
+	geom_point(aes(color = Divergent)) +
+	scale_color_manual(values = c("grey", "red")) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	geom_text_repel(data = div,
+					aes(label = gene),
+					size = 5,
+					box.padding = unit(0.35, "lines"),
+					point.padding = unit(0.3, "lines")) +
+	stat_cor(method = "pearson", label.x = -2.5, size = 5)
+```
+
+We now compare all the genes.
+
+```{r scater-all-Ensembl-UCSC}
+df_counts <- merge(bulk_counts[[i]],
+				   bulk_counts[[j]])
+dim(df_counts)
+
+# Plot the most divergent genes between the 2 references
+df_counts$Divergent <- as.factor(ifelse(df_counts[,ref_names[i]] / df_counts[,ref_names[j]] > 50 |
+	df_counts[,ref_names[j]] / df_counts[,ref_names[i]] > 100, 1, 0))
+div <- df_counts[which(df_counts$Divergent == 1),]
+
+ggplot(df_counts, aes(x = log10(Ensembl), y = log10(UCSC))) +
+	geom_point(aes(color = Divergent)) +
+	scale_color_manual(values = c("grey", "red")) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	geom_text_repel(data = div,
+					aes(label = gene),
+					size = 5,
+					box.padding = unit(0.35, "lines"),
+					point.padding = unit(0.3, "lines")) +
+	stat_cor(method = "pearson", label.x = -2.5, size = 5)
+
+# Plot in color the DE genes that are not shared between the 2 annotations
+tmp <- de_genes[[i]]
+de_excl_Ensembl <- tmp[which(!de_genes[[i]] %in% de_genes[[j]])]
+length(de_excl_Ensembl)
+tmp <- de_genes[[j]]
+de_excl_UCSC <- tmp[which(!de_genes[[j]] %in% de_genes[[i]])]
+length(de_excl_UCSC)
+
+# DF of mutually exclusive genes
+df_counts_i <- df_counts %>%
+	filter(gene %in% de_excl_Ensembl) %>%
+	mutate(Ref = ref_names[i])
+df_counts_j <- df_counts %>%
+	filter(gene %in% de_excl_UCSC) %>%
+	mutate(Ref = ref_names[j])
+df_counts <- rbind(df_counts_i, df_counts_j)
+dim(df_counts)
+
+colors_pal1 <- as.vector(yarrr::piratepal("info", plot.result = FALSE, trans = 0.2)[c(1,2)])
+ggplot(df_counts, aes(x = log10(Ensembl), y = log10(UCSC))) +
+	geom_point(aes(color = Ref)) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	scale_color_manual(values = colors_pal1) +
+	stat_cor(aes(color = Ref), method = "pearson", label.x = -2.5, size = 5)
+```
+
+#### Between NCBI and UCSC
+
+We here compare DE genes.
+
+```{r scater-DE-NCBI-UCSC}
+i <- 2
+j <- 3
+df_counts <- merge(bulk_counts[[i]][de_genes[[i]],],
+				   bulk_counts[[j]][de_genes[[j]],])
+dim(df_counts)
+
+df_counts$Divergent <- as.factor(ifelse(df_counts[,ref_names[i]] / df_counts[,ref_names[j]] > 6 |
+	df_counts[,ref_names[j]] / df_counts[,ref_names[i]] > 3, 1, 0))
+div <- df_counts[which(df_counts$Divergent == 1),]
+
+ggplot(df_counts, aes(x = log10(NCBI), y = log10(UCSC))) +
+	geom_point(aes(color = Divergent)) +
+	scale_color_manual(values = c("grey", "red")) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	geom_text_repel(data = div,
+					aes(label = gene),
+					size = 5,
+					box.padding = unit(0.35, "lines"),
+					point.padding = unit(0.3, "lines")) +
+	stat_cor(method = "pearson", label.x = -2.5, size = 5)
+```
+
+We now compare all the genes.
+
+```{r scater-all-NCBI-UCSC}
+df_counts <- merge(bulk_counts[[i]],
+				   bulk_counts[[j]])
+dim(df_counts)
+
+# Plot the most divergent genes between the 2 references
+df_counts$Divergent <- as.factor(ifelse(df_counts[,ref_names[i]] / df_counts[,ref_names[j]] > 50 |
+	df_counts[,ref_names[j]] / df_counts[,ref_names[i]] > 100, 1, 0))
+div <- df_counts[which(df_counts$Divergent == 1),]
+
+ggplot(df_counts, aes(x = log10(NCBI), y = log10(UCSC))) +
+	geom_point(aes(color = Divergent)) +
+	scale_color_manual(values = c("grey", "red")) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	geom_text_repel(data = div,
+					aes(label = gene),
+					size = 5,
+					box.padding = unit(0.35, "lines"),
+					point.padding = unit(0.3, "lines")) +
+	stat_cor(method = "pearson", label.x = -2.5, size = 5)
+
+# Plot in color the DE genes that are not shared between the 2 annotations
+tmp <- de_genes[[i]]
+de_excl_NCBI <- tmp[which(!de_genes[[i]] %in% de_genes[[j]])]
+length(de_excl_Ensembl)
+tmp <- de_genes[[j]]
+de_excl_UCSC <- tmp[which(!de_genes[[j]] %in% de_genes[[i]])]
+length(de_excl_UCSC)
+
+# DF of mutually exclusive genes
+df_counts_i <- df_counts %>%
+	filter(gene %in% de_excl_NCBI) %>%
+	mutate(Ref = ref_names[i])
+df_counts_j <- df_counts %>%
+	filter(gene %in% de_excl_UCSC) %>%
+	mutate(Ref = ref_names[j])
+df_counts <- rbind(df_counts_i, df_counts_j)
+dim(df_counts)
+
+colors_pal1 <- as.vector(yarrr::piratepal("info", plot.result = FALSE, trans = 0.2)[c(1,2)])
+ggplot(df_counts, aes(x = log10(NCBI), y = log10(UCSC))) +
+	geom_point(aes(color = Ref)) +
+	theme_minimal() +
+	theme(legend.position = "none") +
+	scale_color_manual(values = colors_pal1) +
+	stat_cor(aes(color = Ref), method = "pearson", label.x = -2.5, size = 5)
+```
+
+
+
+## Differences in gene length
+
+```{r}
+head(genes_width_df)
+genes_width_df %>%
+	mutate(diff_NCBI_Ens = NCBI - Ens) %>%
+	mutate(diff_NCBI_UCSC = NCBI - UCSC) %>%
+	mutate(diff_Ens_UCSC = Ens - UCSC)
+head(df_counts)
+
+
+```
+
+## Differences in 3'UTR length
+
+```{r, eval=FALSE}
+head(utr_width_df)
+utr_width_df %>%
+	mutate(diff_NCBI_Ens = NCBI - Ens) %>%
+	mutate(diff_NCBI_UCSC = NCBI - UCSC) %>%
+	mutate(diff_Ens_UCSC = Ens - UCSC)
+
+width2 <- data.frame(annotation = "NCBI", value = utr[[2]]['width'], gene = utr[[2]]['gene_name'])
+colnames(width2) <- c("Ref", "length", "gene")
+width3 <- data.frame(annotation = "UCSC", value = utr[[3]]['width'], gene = utr[[3]]['gene_name'])
+colnames(width3) <- c("Ref", "length", "gene")
+#inner_join(width2, width3, by = "gene")
+
+# Keep unique values of 3UTR
+width2 <- width2 %>% distinct() %>% group_by(gene) %>% filter(length_NCBI == max(length_NCBI))
+width3 <- width3 %>% distinct() %>% group_by(gene) %>% filter(length_UCSC == max(length_UCSC))
+
+tmp <- rbind(width2, width3)
+tmp <- inner_join(width2, width3, by = "gene")
+dim(utr_width_df)
+head(utr_width_df)
+table(utr_width_df$annotation)
+
+tmp <- head(df_counts)
+
+dplyr::inner_join(tmp, utr_width_df)
+```
+
+
+
+# WORK IN PROGRESS
+```{r, eval=FALSE, echo=FALSE}
+lapply(genes, head)
+lapply(genes, nrow)
+
+# Change geneID to geneName for Ensembl annotation
+head(genes[[1]])
+biomart <- read.table(file = 'biomart.txt', header = TRUE, sep = '\t')
+biomart <- biomart %>% mutate(Name = Gene.stable.ID.version)
+id <- match(genes[[1]]$Name, biomart$Gene.stable.ID.version)
+
+tmp <- genes[[1]] %>%
+	left_join(biomart[id, c("Name", "Gene.name")], by = "Name") %>%
+    mutate(row_names = ifelse(Gene.name == "", Name, Gene.name)) %>%
+    mutate(row_names_dup = ifelse(duplicated(row_names) |
+								  duplicated(row_names, fromLast=TRUE ),
+								  Name, row_names))
+
+tmp[,c('Name', 'Gene.name', 'Parent', 'row_names_dup')] <- NULL
+colnames(tmp)[11] <- "Name"
+tmp2 <- makeGRangesFromDataFrame(tmp, keep.extra.columns=TRUE)
+rtracklayer::export(tmp2, "my.gff", version = "3")
+
+genes[[1]] <- tmp
+
+# Prepare data for plotting
+names1 <- data.frame(annotation = "Ensembl", value = genes[[1]]['Name'])
+names2 <- data.frame(annotation = "NCBI", value = genes[[2]]['Name'])
+names3 <- data.frame(annotation = "UCSC", value = genes[[3]]['Name'])
+names_df <- rbind(names1, names2, names3)
+
+
+v1 <- genes[[1]][['Name']]
+v2 <- genes[[2]][['Name']]
+v3 <- genes[[3]][['Name']]
+tmp <- intersect(v1, v2)
+tmp <- intersect(v1, v3)
+tmp <- intersect(v2, v3)
+# 11737 genes names in common bwt Ensembl and NCBI
+# 5832 genes names in common bwt Ensembl and UCSC
+# 6545 genes names in common bwt NCBI and UCSC
+```
+
+```{bash, eval= FALSE}
+# with intersections
+
+```
+
+```{r, eval=FALSE}
+file_names <- c('bedtools_ensGene_ncbiRefSeq_refGene_tab.bed',
+				'bedtools_ncbiRefSeq_refGene_ensGene_tab.bed',
+				'bedtools_refGene_ensGene_ncbiRefSeq_tab.bed')
+ref_names <- c('Ensembl', 'NCBI', 'UCSC')
+bed_files <- c(paste0('../scAnnotatiONT/tmp/convert-table/', file_names))
+beds <- list()
+bed <- lapply(bed_files, read.csv,
+					header = FALSE,
+					sep = '\t',
+					quote = "")
+lapply(bed, head)
+
+tmp <- bed[[1]]
+tmp$V3 <- NULL
+head(tmp)
+table(tmp$V1 == tmp$V4)
+tmp <- unique(tmp)
+
+tmp_head <- head(tmp, n=10)
+tmp2 <- tmp_head %>% filter(V2 == "NCBI")
+tmp3 <- tmp_head %>% filter(V2 == "UCSC")
+full_join(tmp2, tmp3)
+
+tmp2 %>% spread(V2, V4)
+
+tmp <- data.frame(V1 = c('france', 'italy', 'italy', 'germany'), V2 = c('A', 'A', 'B', '.'), V4 = c('pink', 'blue', 'blue', NA))
+tmp <- data.frame(V1 = c('france', 'france', 'italy', 'italy', 'germany'), V2 = c('A', 'A', 'A', 'B', '.'), V4 = c('pink', 'pink2', 'blue', 'blue', NA))
+tmp %>% unique() %>% spread(V2, V4)
+tmp_head %>% unique() %>% spread(V2, V4)
+pivot_wider(tmp, names_from = V2, values_from = V4)
+tmp <- tmp %>%
+	group_by(V2) %>%
+	mutate(helper = paste0("Group", row_number())) %>% 
+	ungroup() %>%
+	pivot_wider(names_from = V2, values_from = V4)
+```
+
+
+
+
+
+<!--chapter:end:01-Impact-ref-annotation-scRNA.Rmd-->
+
+# Incomplete annotations induce signal loss
+
+<!--chapter:end:02-Incomplete-annotations-induce-signal-loss.Rmd-->
+
+# Approaches to improve transcriptome with long reads
+
+<!--chapter:end:03-Approaches-to-improve-transcriptome-with-Long-Reads.Rmd-->
+
+# Impact of re-annotation on scRNA-seq analyses
+
+<!--chapter:end:04-Impact-reannotation-scRNA.Rmd-->
+
+# Validation of novel genes with scRNA
+
+<!--chapter:end:05-Validation-of-novel-genes-with-scRNA.Rmd-->
+
+# A tool and pipeline to improve annotation for scRNA-seq analyses
+
+<!--chapter:end:06-A-tool-and-pipeline-to-improve-annotation-for-scRNA.Rmd-->
+
+# Session info
+```{r session-info}
+sessionInfo()
+```
+
+<!--chapter:end:07-Session-info.Rmd-->
+

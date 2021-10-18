@@ -35,31 +35,19 @@ opts_chunk$set(fig.align = "center",
 
 ```{r def-libraries, echo=FALSE, cache=FALSE}
 packagesList <- c("bookdown",
-				   "knitr",
-				   "rmarkdown",
-				   "Seurat",
-				   "scater",
-				   "clusterProfiler",
-				   "tidyseurat",
-				   "monocle3",
-				   "DT",
-				   "ggplot2",
-				   "Matrix",
-				   "dplyr",
-				   "RColorBrewer",
-				   "viridis",
-				   "wesanderson",
-				   "gskb",
-				   "ggExtra",
-				   "ggpubr")
-
-packagesList <- c("bookdown",
 				  "dplyr",
 				  "eulerr",
 				  "RColorBrewer",
+				  "wesanderson",
 				  "ggplot2",
 				  "gridExtra",
-				  "ggpubr")
+				  "ggpubr",
+				  "Seurat",
+				  "gridExtra",
+				  "cowplot",
+				  "scales",
+				  "ggthemes",
+				  "ggrepel")
 lapply(packagesList, require, character.only = TRUE)
 options(stringsAsFactors = FALSE)
 ```

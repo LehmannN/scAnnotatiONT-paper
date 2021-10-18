@@ -4,24 +4,24 @@ processing file: scAnnotatiONT-paper.Rmd
   |                                                                              |                                                                      |   0%  |                                                                              |.                                                                     |   1%
    inline R code fragments
 
-  |                                                                              |..                                                                    |   3%
+  |                                                                              |.                                                                     |   2%
 label: setup-paths (with options) 
 List of 1
  $ echo: logi FALSE
 
-  |                                                                              |...                                                                   |   4%
+  |                                                                              |..                                                                    |   3%
   ordinary text without R code
 
-  |                                                                              |....                                                                  |   5%
+  |                                                                              |...                                                                   |   4%
 label: setup-chunks (with options) 
 List of 2
  $ echo   : logi FALSE
  $ message: logi FALSE
 
-  |                                                                              |.....                                                                 |   7%
+  |                                                                              |...                                                                   |   5%
   ordinary text without R code
 
-  |                                                                              |......                                                                |   8%
+  |                                                                              |....                                                                  |   6%
 label: def-libraries (with options) 
 List of 2
  $ echo : logi FALSE
@@ -42,6 +42,7 @@ The following objects are masked from 'package:base':
 
 Loading required package: eulerr
 Loading required package: RColorBrewer
+Loading required package: wesanderson
 Loading required package: ggplot2
 Loading required package: gridExtra
 
@@ -52,35 +53,55 @@ The following object is masked from 'package:dplyr':
     combine
 
 Loading required package: ggpubr
-  |                                                                              |.......                                                               |  10%
+Loading required package: Seurat
+Attaching SeuratObject
+Loading required package: cowplot
+
+Attaching package: 'cowplot'
+
+The following object is masked from 'package:ggpubr':
+
+    get_legend
+
+Loading required package: scales
+Loading required package: ggthemes
+
+Attaching package: 'ggthemes'
+
+The following object is masked from 'package:cowplot':
+
+    theme_map
+
+Loading required package: ggrepel
+  |                                                                              |.....                                                                 |   7%
   ordinary text without R code
 
-  |                                                                              |........                                                              |  11%
+  |                                                                              |.....                                                                 |   8%
 label: setup-knitr (with options) 
 List of 1
  $ include: logi FALSE
 
-  |                                                                              |.........                                                             |  12%
+  |                                                                              |......                                                                |   9%
   ordinary text without R code
 
-  |                                                                              |..........                                                            |  14%
+  |                                                                              |.......                                                               |  10%
 label: ggplot-theme (with options) 
 List of 1
  $ echo: logi FALSE
 
-  |                                                                              |...........                                                           |  15%
+  |                                                                              |.......                                                               |  11%
   ordinary text without R code
 
-  |                                                                              |............                                                          |  16%
+  |                                                                              |........                                                              |  12%
 label: unnamed-chunk-1 (with options) 
 List of 2
  $ eval  : logi TRUE
  $ engine: chr "bash"
 
-  |                                                                              |............                                                          |  18%
+  |                                                                              |.........                                                             |  13%
   ordinary text without R code
 
-  |                                                                              |.............                                                         |  19%
+  |                                                                              |..........                                                            |  14%
 label: unnamed-chunk-2 (with options) 
 List of 4
  $ eval   : logi FALSE
@@ -88,21 +109,54 @@ List of 4
  $ warning: logi FALSE
  $ engine : chr "bash"
 
-  |                                                                              |..............                                                        |  21%
+  |                                                                              |..........                                                            |  15%
   ordinary text without R code
 
-  |                                                                              |...............                                                       |  22%
+  |                                                                              |...........                                                           |  16%
 label: unnamed-chunk-3 (with options) 
 List of 3
  $ eval  : logi TRUE
  $ echo  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |................                                                      |  23%
+  |                                                                              |............                                                          |  17%
   ordinary text without R code
 
-  |                                                                              |.................                                                     |  25%
+
 label: unnamed-chunk-4 (with options) 
+List of 2
+ $ eval  : logi FALSE
+ $ engine: chr "bash"
+
+  |                                                                              |.............                                                         |  18%
+  ordinary text without R code
+
+  |                                                                              |..............                                                        |  19%
+label: unnamed-chunk-5 (with options) 
+List of 3
+ $ eval  : logi FALSE
+ $ echo  : logi FALSE
+ $ engine: chr "bash"
+
+  |                                                                              |..............                                                        |  20%
+  ordinary text without R code
+
+  |                                                                              |...............                                                       |  21%
+label: unnamed-chunk-6 (with options) 
+List of 2
+ $ eval  : logi FALSE
+ $ engine: chr "bash"
+
+  |                                                                              |................                                                      |  22%
+  ordinary text without R code
+
+  |                                                                              |................                                                      |  23%
+label: mikado-stats
+  |                                                                              |.................                                                     |  24%
+  ordinary text without R code
+
+  |                                                                              |..................                                                    |  25%
+label: unnamed-chunk-7 (with options) 
 List of 2
  $ eval  : logi FALSE
  $ engine: chr "bash"
@@ -111,184 +165,240 @@ List of 2
   ordinary text without R code
 
   |                                                                              |...................                                                   |  27%
-label: unnamed-chunk-5 (with options) 
-List of 3
- $ eval  : logi FALSE
- $ echo  : logi FALSE
- $ engine: chr "bash"
-
-  |                                                                              |....................                                                  |  29%
+label: mikado-general-stats
+  |                                                                              |....................                                                  |  28%
   ordinary text without R code
 
+  |                                                                              |....................                                                  |  29%
+label: extract-gff3
   |                                                                              |.....................                                                 |  30%
-label: unnamed-chunk-6 (with options) 
-List of 2
- $ eval  : logi FALSE
- $ engine: chr "bash"
+  ordinary text without R code
 
+  |                                                                              |......................                                                |  31%
+label: gene-length
   |                                                                              |......................                                                |  32%
   ordinary text without R code
 
   |                                                                              |.......................                                               |  33%
-label: mikado-stats
+label: unnamed-chunk-8
   |                                                                              |........................                                              |  34%
   ordinary text without R code
 
+  |                                                                              |........................                                              |  35%
+label: gene-length-boxplot
   |                                                                              |.........................                                             |  36%
-label: unnamed-chunk-7 (with options) 
-List of 2
- $ eval  : logi FALSE
- $ engine: chr "bash"
-
-  |                                                                              |..........................                                            |  37%
   ordinary text without R code
 
+  |                                                                              |..........................                                            |  37%
+label: gene-length-significance
   |                                                                              |...........................                                           |  38%
-label: mikado-general-stats
+  ordinary text without R code
+
+  |                                                                              |...........................                                           |  39%
+label: gene-length-boxplot-advanced
   |                                                                              |............................                                          |  40%
   ordinary text without R code
 
   |                                                                              |.............................                                         |  41%
-label: gene-length
-  |                                                                              |..............................                                        |  42%
+label: gene-length-density
+  |                                                                              |.............................                                         |  42%
   ordinary text without R code
 
+  |                                                                              |..............................                                        |  43%
+label: gene-length-histogram
   |                                                                              |...............................                                       |  44%
-label: unnamed-chunk-8
-  |                                                                              |................................                                      |  45%
+  ordinary text without R code
+
+  |                                                                              |...............................                                       |  45%
+label: utr-length
+  |                                                                              |................................                                      |  46%
   ordinary text without R code
 
   |                                                                              |.................................                                     |  47%
-label: gene-length-boxplot
-  |                                                                              |..................................                                    |  48%
+label: utr-length-boxplot
+  |                                                                              |.................................                                     |  48%
   ordinary text without R code
 
-  |                                                                              |...................................                                   |  49%
-label: gene-length-significance
-  |                                                                              |...................................                                   |  51%
+  |                                                                              |..................................                                    |  49%
+label: utr-length-significance
+  |                                                                              |...................................                                   |  50%
   ordinary text without R code
 
-  |                                                                              |....................................                                  |  52%
-label: gene-length-boxplot-advanced
+
+label: utr-length-boxplot-advanced
+  |                                                                              |....................................                                  |  51%
+  ordinary text without R code
+
+  |                                                                              |.....................................                                 |  52%
+label: utr-length-density
   |                                                                              |.....................................                                 |  53%
   ordinary text without R code
 
-  |                                                                              |......................................                                |  55%
-label: gene-length-density
-  |                                                                              |.......................................                               |  56%
-  ordinary text without R code
-
-  |                                                                              |........................................                              |  58%
-label: gene-length-histogram
-  |                                                                              |.........................................                             |  59%
-  ordinary text without R code
-
-  |                                                                              |..........................................                            |  60%
-label: utr-length
-  |                                                                              |...........................................                           |  62%
-  ordinary text without R code
-
-  |                                                                              |............................................                          |  63%
-label: utr-length-boxplot
-  |                                                                              |.............................................                         |  64%
-  ordinary text without R code
-
-  |                                                                              |..............................................                        |  66%
-label: utr-length-significance
-  |                                                                              |...............................................                       |  67%
-  ordinary text without R code
-
-  |                                                                              |................................................                      |  68%
-label: utr-length-boxplot-advanced
-  |                                                                              |.................................................                     |  70%
-  ordinary text without R code
-
-  |                                                                              |..................................................                    |  71%
-label: utr-length-density
-  |                                                                              |...................................................                   |  73%
-  ordinary text without R code
-
-  |                                                                              |....................................................                  |  74%
+  |                                                                              |......................................                                |  54%
 label: utr-length-histogram
-  |                                                                              |.....................................................                 |  75%
+  |                                                                              |.......................................                               |  55%
   ordinary text without R code
 
-  |                                                                              |......................................................                |  77%
+  |                                                                              |.......................................                               |  56%
 label: unnamed-chunk-9 (with options) 
 List of 3
  $ eval  : logi FALSE
  $ echo  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |.......................................................               |  78%
+  |                                                                              |........................................                              |  57%
   ordinary text without R code
 
-  |                                                                              |........................................................              |  79%
+  |                                                                              |.........................................                             |  58%
 label: unnamed-chunk-10 (with options) 
 List of 3
  $ eval  : logi FALSE
  $ echo  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |.........................................................             |  81%
+  |                                                                              |.........................................                             |  59%
   ordinary text without R code
 
-  |                                                                              |..........................................................            |  82%
+  |                                                                              |..........................................                            |  60%
 label: unnamed-chunk-11 (with options) 
 List of 2
  $ eval  : logi FALSE
  $ engine: chr "bash"
 
-  |                                                                              |..........................................................            |  84%
+  |                                                                              |...........................................                           |  61%
   ordinary text without R code
 
-  |                                                                              |...........................................................           |  85%
+  |                                                                              |...........................................                           |  62%
 label: venn-refs (with options) 
 List of 1
  $ eval: logi TRUE
 
+  |                                                                              |............................................                          |  63%
+  ordinary text without R code
+
+  |                                                                              |.............................................                         |  64%
+label: gffcompare-load
+  |                                                                              |..............................................                        |  65%
+  ordinary text without R code
+
+  |                                                                              |..............................................                        |  66%
+label: gffcompare
+  |                                                                              |...............................................                       |  67%
+  ordinary text without R code
+
+  |                                                                              |................................................                      |  68%
+label: load-sc-data
+  |                                                                              |................................................                      |  69%
+  ordinary text without R code
+
+  |                                                                              |.................................................                     |  70%
+label: dim-plots (with options) 
+List of 1
+ $ eval: logi TRUE
+
+  |                                                                              |..................................................                    |  71%
+  ordinary text without R code
+
+  |                                                                              |..................................................                    |  72%
+label: feature-plots (with options) 
+List of 1
+ $ eval: logi TRUE
+
+  |                                                                              |...................................................                   |  73%
+  ordinary text without R code
+
+  |                                                                              |....................................................                  |  74%
+label: compare-proportions
+  |                                                                              |....................................................                  |  75%
+  ordinary text without R code
+
+  |                                                                              |.....................................................                 |  76%
+label: de-genes-prepare
+  |                                                                              |......................................................                |  77%
+  ordinary text without R code
+
+  |                                                                              |......................................................                |  78%
+label: scater-DE-Ensembl-NCBI
+  |                                                                              |.......................................................               |  79%
+  ordinary text without R code
+
+  |                                                                              |........................................................              |  80%
+label: scater-all-Ensembl-NCBI
+  |                                                                              |........................................................              |  81%
+  ordinary text without R code
+
+  |                                                                              |.........................................................             |  82%
+label: scater-DE-Ensembl-UCSC
+  |                                                                              |..........................................................            |  83%
+  ordinary text without R code
+
+
+label: scater-all-Ensembl-UCSC
+  |                                                                              |...........................................................           |  84%
+  ordinary text without R code
+
+  |                                                                              |............................................................          |  85%
+label: scater-DE-NCBI-UCSC
   |                                                                              |............................................................          |  86%
   ordinary text without R code
 
-  |                                                                              |.............................................................         |  88%
-label: gffcompare-load
-  |                                                                              |..............................................................        |  89%
+  |                                                                              |.............................................................         |  87%
+label: scater-all-NCBI-UCSC
+  |                                                                              |..............................................................        |  88%
   ordinary text without R code
 
-  |                                                                              |...............................................................       |  90%
-label: gffcompare
-  |                                                                              |................................................................      |  92%
-  ordinary text without R code
-
-  |                                                                              |.................................................................     |  93%
-label: unnamed-chunk-12 (with options) 
-List of 1
- $ eval: logi FALSE
-
-  |                                                                              |..................................................................    |  95%
-  ordinary text without R code
-
-  |                                                                              |...................................................................   |  96%
-label: unnamed-chunk-13 (with options) 
-List of 1
- $ eval: logi FALSE
-
-  |                                                                              |....................................................................  |  97%
-  ordinary text without R code
-
-  |                                                                              |..................................................................... |  99%
-label: session-info
-  |                                                                              |......................................................................| 100%
-  ordinary text without R code
-
-
-output file: scAnnotatiONT-paper.knit.md
-
-/workspaces/csb/lehmann/conda/envs/scRNA/bin/pandoc +RTS -K512m -RTS scAnnotatiONT-paper.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output scAnnotatiONT-paper.html --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/bookdown/rmarkdown/lua/custom-environment.lua --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/rmarkdown/rmarkdown/lua/latex-div.lua --metadata-file /tmp/RtmpllkeJ2/filed9fb76c6edc24 --wrap preserve --standalone --section-divs --table-of-contents --toc-depth 3 --template /import/bc_workspaces/csb/lehmann/conda/envs/scRNA/lib/R/library/bookdown/templates/gitbook.html --highlight-style pygments --number-sections --include-in-header /tmp/RtmpllkeJ2/rmarkdown-strd9fb76e82ccd2.html --mathjax --citeproc 
-
-Output created: docs/impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html
-[1] "/import/kg_csbws01/lehmann/annotation/scAnnotatiONT-paper/docs/impact-of-discrepant-reference-annotations-on-scrna-seq-analyses.html"
+  |                                                                              |...............................................................       |  89%
+label: unnamed-chunk-12
+Registered S3 method overwritten by 'cli':
+  method     from         
+  print.boxx spatstat.geom
+Quitting from lines 857-865 (scAnnotatiONT-paper.Rmd) 
+Error: Problem with `mutate()` input `diff_NCBI_Ens`.
+✖ objet 'NCBI' introuvable
+ℹ Input `diff_NCBI_Ens` is `NCBI - Ens`.
+Backtrace:
+     █
+  1. ├─bookdown::render_book("00-Index.Rmd", "bookdown::gitbook")
+  2. │ └─bookdown:::render_cur_session(...)
+  3. │   └─rmarkdown::render(main, output_format, ..., clean = clean, envir = envir)
+  4. │     └─knitr::knit(knit_input, knit_output, envir = envir, quiet = quiet)
+  5. │       └─knitr:::process_file(text, output)
+  6. │         ├─base::withCallingHandlers(...)
+  7. │         ├─knitr:::process_group(group)
+  8. │         └─knitr:::process_group.block(group)
+  9. │           └─knitr:::call_block(x)
+ 10. │             └─knitr:::block_exec(params)
+ 11. │               └─knitr:::eng_r(options)
+ 12. │                 ├─knitr:::in_dir(...)
+ 13. │                 └─knitr:::evaluate(...)
+ 14. │                   └─evaluate::evaluate(...)
+ 15. │                     └─evaluate:::evaluate_call(...)
+ 16. │                       ├─evaluate:::timing_fn(...)
+ 17. │                       ├─base:::handle(...)
+ 18. │                       ├─base::withCallingHandlers(...)
+ 19. │                       ├─base::withVisible(eval(expr, envir, enclos))
+ 20. │                       └─base::eval(expr, envir, enclos)
+ 21. │                         └─base::eval(expr, envir, enclos)
+ 22. ├─`%>%`(...)
+ 23. ├─dplyr::mutate(., diff_Ens_UCSC = Ens - UCSC)
+ 24. ├─dplyr::mutate(., diff_NCBI_UCSC = NCBI - UCSC)
+ 25. ├─dplyr::mutate(., diff_NCBI_Ens = NCBI - Ens)
+ 26. ├─dplyr:::mutate.data.frame(., diff_NCBI_Ens = NCBI - Ens)
+ 27. │ └─dplyr:::mutate_cols(.data, ...)
+ 28. │   ├─base::withCallingHandlers(...)
+ 29. │   └─mask$eval_all_mutate(quo)
+ 30. └─base::.handleSimpleError(...)
+ 31.   └─dplyr:::h(simpleError(msg, call))
 Warning messages:
 1: package 'eulerr' was built under R version 4.0.5 
-2: In split_chapters(output, gitbook_page, number_sections, split_by,  :
-  You have 8 Rmd input file(s) but only 7 first-level heading(s). Did you forget first-level headings in certain Rmd files?
+2: ggrepel: 1 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+3: ggrepel: 1 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+4: ggrepel: 1 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+5: ggrepel: 6 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+6: ggrepel: 6 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+7: ggrepel: 6 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+8: ggrepel: 4 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+9: ggrepel: 4 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+10: ggrepel: 4 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+
+Exécution arrêtée
